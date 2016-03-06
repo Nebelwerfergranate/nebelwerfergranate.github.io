@@ -1,1 +1,37 @@
-<h1>Test</h1>
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Заголовок</title>
+	</head>
+	<body>
+		<button id="btn">Следующий шаг</button>
+		<div id="screen"></div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="sorter.js"></script>
+		<script>
+		
+            
+            $().ready(function(){
+	            var data = [1,3,2,-1,5,-3];
+	            
+	            var sorter = new Sorter(data);
+	            renderArray(data);
+	            
+	            $("#btn").on("click", function(){
+	            	sorter.nextStep();
+	            	$("#screen").html("");
+	            	renderArray(data);
+	            });
+	            
+	            
+            });
+            
+            function renderArray(arr){
+            	for(var i = 0; i < arr.length; i++){
+	           		$("#screen").append( "<p>" + arr[i] + "</p>" );
+	           	}
+            }
+		</script>
+	</body>
+</html>
