@@ -9,14 +9,14 @@ function Sorter(data) {
         var isDone = false;
         this.isChanged = false;
         outer:
-        for ( ; i > 0; ) {
+        for ( ; i > 0; i--) {
             if(isDone){
                 if(j -1 === i){
                     j = 0;
                 }
                 break;
             }
-            for ( ; j < i; ) {
+            for ( ; j < i; j++) {
                 if(isDone){
                     break outer;
                 }
@@ -28,9 +28,7 @@ function Sorter(data) {
                 }
                 this.position = j;
                 isDone = true;
-                j++;
             }
-            i--;
         }
     }
 }
