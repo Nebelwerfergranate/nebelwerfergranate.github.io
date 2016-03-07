@@ -3,22 +3,22 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Заголовок</title>
-		<!-- подключаем стили Mocha, для отображения результатов -->
+		
+		<!-- подключаем mocha -->
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
 	    <link rel="stylesheet" href="style.css">
-	    <!-- подключаем библиотеку Mocha -->
-	 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
-	  	<!-- настраиваем Mocha: предстоит BDD-тестирование -->
+	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
 		<script>
-			mocha.setup('bdd');
+			mocha.setup('bdd'); // настраиваем Mocha на BDD-тестирование
 	 	</script>
 	
 	  	<!-- подключаем chai -->
 	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
-	 	<!-- в chai есть много всего, выносим assert в глобальную область -->
 	  	<script>
-	    	var assert = chai.assert;
+	    	var assert = chai.assert; // выносим assert в глобальную область
 	  	</script>
+	  	
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -27,23 +27,18 @@
 			<!-- в элементе с id="mocha" будут результаты тестов -->
   			<div id="mocha"></div>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		
+		
+		<!-- Скрипты -->
 		<script type="text/javascript" src="sorter.js"></script>
 		
-		<script>
-		    function pow(x, n) {
-		      /* код функции, пока что пусто */
-		    }
-		</script>
-		<!-- в этом скрипте находятся спеки -->
   		<script src="test.js"></script>
-  		
+  		<script>
+  			mocha.run();
+  		</script>
 		
 		<script>
-			mocha.run();
-			
-            $().ready(function(){
+			$().ready(function(){
 	            var data = [];
 		        var capacity = 10;
 		        for(var i = 0; i < capacity; i ++){
