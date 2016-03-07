@@ -36,5 +36,9 @@ body{
 }
 
 .yellow {
-	background-color: yellow !important;
+	background-color: yellow;
+}
+
+.red{
+	background-color: red;
 }
