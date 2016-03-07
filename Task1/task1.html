@@ -5,6 +5,7 @@
 		<title>Заголовок</title>
 		<!-- подключаем стили Mocha, для отображения результатов -->
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+	    <link rel="stylesheet" href="style.css">
 	    <!-- подключаем библиотеку Mocha -->
 	 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
 	  	<!-- настраиваем Mocha: предстоит BDD-тестирование -->
@@ -20,13 +21,13 @@
 	  	</script>
 	</head>
 	<body>
-		<button id="btn">Следующий шаг</button>
-		<div id="screen"></div>
-		
-		<!-- в элементе с id="mocha" будут результаты тестов -->
-  		<div id="mocha"></div>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<div class="container">
+			<div id="screen"></div>
+			<button id="btn">Следующий шаг</button>
+			<!-- в элементе с id="mocha" будут результаты тестов -->
+  			<div id="mocha"></div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		
 		<script type="text/javascript" src="sorter.js"></script>
 		
@@ -46,19 +47,26 @@
 	            var data = [1,3,2,-1,5,-3];
 	            
 	            var sorter = new Sorter(data);
-	            renderArray(data);
+	            renderArray(data, -2);
 	            
 	            $("#btn").on("click", function(){
+	            	//alert("hui!!!");
 	            	sorter.nextStep();
+	            	var pos = sorter.position;
+	            	
 	            	$("#screen").html("");
-	            	renderArray(data);
+	            	renderArray(data, pos);
 	            });
             });
             
-            function renderArray(arr){
+            function renderArray(arr, pos){
             	for(var i = 0; i < arr.length; i++){
 	           		$("#screen").append( "<p>" + arr[i] + "</p>" );
 	           	}
+	           	pos++;
+	            $("#screen p:nth-child(" + pos +")").addClass("yellow");
+	            pos++;
+	            $("#screen p:nth-child(" + pos +")").addClass("yellow");
             }
 		</script>
 	</body>
