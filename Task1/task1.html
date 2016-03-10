@@ -35,6 +35,7 @@
 				<h2>Выполнение сортировки</h2>
 				<button id="nextStepBtn" class="btn">Следующий шаг (enter)</button>
 				<button id="resetBtn" class="btn">Сброс</button>
+				<button id="autoSortBtn" class="btn">Для ленивых</button>
 			</div>
 			
 			<!-- в элементе с id="mocha" будут результаты тестов -->
@@ -60,6 +61,8 @@
 	            var data = [];
 	           	var sorter = null;
 	           	var sortingIsRunning = false;
+	           	var intervalId = null;
+	           	var autosortIsRunning = false;
 	           	
 	           	var getRandomInt = Utils.getRandomInt;
 	           	
@@ -109,7 +112,7 @@
 	            $("#nextStepBtn").on("click", function(){
 	            	sorter.nextStep();
 	            	
-	            	render(sorter.data);
+	            	render(sorter.data, sorter.numbersSorted);
 		           	
 		           	if(sorter.isChanged){
 		           		$("#screen p").eq(sorter.position).addClass("red");
@@ -127,13 +130,39 @@
 	            	render(data);
 	            	$("#inputPanel").removeClass("hidden");
 	                $("#sortPanel").addClass("hidden");
+	                autosortIsRunning = false;
+	                clearInterval(intervalId);
+	                $("#autoSortBtn").text("Для ленивых");
 	            })
 	            
-	            function render(data){
+	            $("#autoSortBtn").on("click", function(){
+		            autosortIsRunning = !autosortIsRunning;
+	            	
+	            	if(autosortIsRunning){
+	            		$("#autoSortBtn").text("Стоп");
+	            		intervalId = setInterval(function(){
+		            		if(sorter.numbersSorted < sorter.data.length){
+		            			$("#nextStepBtn").click();
+		            		}
+		            		else{
+		            			clearInterval(intervalId);
+		            		}
+		            	}, 500);	
+	            	} else{
+	            		clearInterval(intervalId);
+	            		$("#autoSortBtn").text("Продолжить");
+	            	}
+	            });
+	            
+	            function render(data, numbersSorted){
+	            	var numbersSorted = numbersSorted || 0;
 	            	$("#screen").html("");
 	            	for(var i = 0; i < data.length; i++){
 		           		$("#screen").append( "<p>" + data[i] + "</p>" );
-		           	}
+		           		if(data.length - i <= numbersSorted){
+		           			$("#screen p").eq(i).addClass("sorted");	
+		           		}
+	            	}
 	            }
             });
 		</script>

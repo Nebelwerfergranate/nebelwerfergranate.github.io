@@ -19,6 +19,13 @@ function Sorter(data) {
     this.__defineGetter__("isChanged", function(){
 		return isChanged;
 	});
+	
+	this.__defineGetter__("numbersSorted", function(){
+	    if(j === i) {
+	        return data.length - i;
+	    }
+	    return data.length - i - 1;
+	});
     
     //Methods
     this.nextStep = function(){

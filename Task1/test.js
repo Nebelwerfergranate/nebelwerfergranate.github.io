@@ -10,6 +10,8 @@ describe("Sorter", function(){
         var dataToCompare = data.slice()
         var sorter = new Sorter(dataToCompare);
         
+        var alreadySorted = 0;
+        
         // Standard sorter
         for(var i = data.length-1 ; i > 0 ; i--){
             for(var j = 0 ; j < i ; j++){
@@ -28,6 +30,8 @@ describe("Sorter", function(){
                 assert.equal(sorter.position, j, "Позиция указывается неверно");
                 assert.deepEqual(sorter.data, data, "Массив отсортирован неправильно");
             }
+            alreadySorted++;
+            assert.equal(sorter.numbersSorted, alreadySorted, "Свойство alreadySorted работает некорректно");
         }
         
         for(var i = 0; i < 10; i++){

@@ -105,5 +105,10 @@ div#sortPanel h2{
 #screen .red{
 	background-color: transparent;
 	border-color: #236477;
-	color:#ffd101;
+	color:#ffd101 !important;
+}
+
+#screen .sorted{
+	background-color: #236477;
+	color: #cfdfda;
 }
