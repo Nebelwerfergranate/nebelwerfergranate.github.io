@@ -35,6 +35,14 @@ body{
 	text-align: center;
 }
 
+.hidden{
+	display: none;
+}
+
+.clear{
+	clear: both;
+}
+
 .yellow {
 	background-color: yellow;
 }

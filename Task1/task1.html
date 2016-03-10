@@ -13,7 +13,7 @@
 	 	</script>
 	
 	  	<!-- подключаем chai -->
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
 	  	<script>
 	    	var assert = chai.assert; // выносим assert в глобальную область
 	  	</script>
@@ -22,8 +22,18 @@
 	</head>
 	<body>
 		<div class="container">
+			<div id="inputPanel">
+				<input id="inputField" type="number" min="-999" max="999" step="1" required/>
+				<button id="addNumberBtn">Добавить число</button>
+				<button id="startBtn">Начать сортировку</button>
+			</div>
 			<div id="screen"></div>
-			<button id="btn">Следующий шаг</button>
+			<div id="sortPanel" class="hidden">
+				<button id="nextStepBtn">Следующий шаг</button>
+				<button id="resetBtn">Сброс</button>
+			</div>
+			
+			<div class="clear"></div>
 			<!-- в элементе с id="mocha" будут результаты тестов -->
   			<div id="mocha"></div>
 		</div>
@@ -40,24 +50,30 @@
 		<script>
 			$().ready(function(){
 	            var data = [];
-		        var capacity = 10;
-		        for(var i = 0; i < capacity; i ++){
-		            data.push(getRandomInt(-100, 100));
-        		}
+
+	           	var sorter = null;
 	            
-	           	var sorter = new Sorter(data);
-	           	
-	            for(var i = 0; i < sorter.data.length; i++){
-		        	$("#screen").append( "<p>" + sorter.data[i] + "</p>" );
-		        }
+	            $("#addNumberBtn").on("click", function() {
+	            	var input = document.getElementById("inputField");
+	            	if(!input.checkValidity()){
+	            		return;
+	            	}
+	               	data.push(input.value);
+	                input.value = "";
+	                render(data);
+	            })
 	            
-	            $("#btn").on("click", function(){
+	            $("#startBtn").on("click", function() {
+	                $("#inputPanel").addClass("hidden");
+	                $("#sortPanel").removeClass("hidden");
+	                sorter = new Sorter(data);
+	            });
+	            
+	            
+	            $("#nextStepBtn").on("click", function(){
 	            	sorter.nextStep();
 	            	
-	            	$("#screen").html("");
-	            	for(var i = 0; i < sorter.data.length; i++){
-		           		$("#screen").append( "<p>" + sorter.data[i] + "</p>" );
-		           	}
+	            	render(sorter.data);
 		           	
 		           	if(sorter.isChanged){
 		           		$("#screen p").eq(sorter.position).addClass("red");
@@ -67,10 +83,19 @@
 		            	$("#screen p").eq(sorter.position + 1).addClass("yellow");	
 		           	}
 	            });
+	            
+	            
+	            
+	            function render(data){
+	            	$("#screen").html("");
+	            	for(var i = 0; i < data.length; i++){
+		           		$("#screen").append( "<p>" + data[i] + "</p>" );
+		           	}
+	            }
             
-                function getRandomInt(min, max) {
-	        		return Math.floor(Math.random() * (max - min)) + min;
-	    		}
+                //function getRandomInt(min, max) {
+	        	//	return Math.floor(Math.random() * (max - min)) + min;
+	    		//}
             });
 		</script>
 	</body>

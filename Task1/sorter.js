@@ -3,15 +3,26 @@ function Sorter(data) {
     var temp;
     var i = data.length - 1;
     var j = 0;
+    var data = data;
+    var isChanged = false;
+    var position = 0;
     
     //Properties
-    this.data = data;
-    this.position = 0;
-    this.isChanged = false;
+    this.__defineGetter__("data", function(){
+		return data;
+	});
+
+    this.__defineGetter__("position", function(){
+		return position;
+	});
+
+    this.__defineGetter__("isChanged", function(){
+		return isChanged;
+	});
     
     //Methods
     this.nextStep = function(){
-        this.isChanged = false;
+        isChanged = false;
         
         if(j === i){
             j = 0;
@@ -22,13 +33,13 @@ function Sorter(data) {
             return;
         }
         
-        if (this.data[j] > this.data[j+1]) {
-            temp = this.data[j];
-            this.data[j] = this.data[j+1];
-            this.data[j+1] = temp;
-            this.isChanged = true;
+        if (data[j] > data[j+1]) {
+            temp = data[j];
+            data[j] = data[j+1];
+            data[j+1] = temp;
+            isChanged = true;
         }
-        this.position = j;
+        position = j;
         j++;
     };
 }
