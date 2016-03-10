@@ -1,7 +1,9 @@
 describe("Sorter", function(){
+    var getRandomInt = Utils.getRandomInt;
+    
     it("Пошаговое сравнение с эталонной сортировкой", function(){
         var data = [];
-        var capacity = 100;
+        var capacity = 50;
         for(var i = 0; i < capacity; i ++){
             data.push(getRandomInt(-10000, 10000));
         }
@@ -33,8 +35,4 @@ describe("Sorter", function(){
             assert.equal(sorter.position, 0, "После завершения сортировки позиция всё еще может изменяться");
         }
     });
-    
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
 });

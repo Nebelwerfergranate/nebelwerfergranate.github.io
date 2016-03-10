@@ -23,13 +23,14 @@
 	<body>
 		<div class="container">
 			<div id="inputPanel">
-				<input id="inputField" type="number" min="-999" max="999" step="1" required/>
-				<button id="addNumberBtn">Добавить число</button>
+				<input id="inputField" type="number" min="-999" max="999" step="1" value="0" required/>
+				<button id="addNumberBtn">Добавить число (enter)</button>
 				<button id="startBtn">Начать сортировку</button>
+				<button id="randomBtn">Для ленивых</button>
 			</div>
 			<div id="screen"></div>
 			<div id="sortPanel" class="hidden">
-				<button id="nextStepBtn">Следующий шаг</button>
+				<button id="nextStepBtn">Следующий шаг (enter)</button>
 				<button id="resetBtn">Сброс</button>
 			</div>
 			
@@ -41,6 +42,7 @@
 		
 		<!-- Скрипты -->
 		<script type="text/javascript" src="sorter.js"></script>
+		<script type="text/javascript" src="utils.js"></script>
 		
   		<script src="test.js"></script>
   		<script>
@@ -50,23 +52,48 @@
 		<script>
 			$().ready(function(){
 	            var data = [];
-
 	           	var sorter = null;
-	            
+	           	var sortingIsRunning = false;
+	           	
+	           	var getRandomInt = Utils.getRandomInt;
+	           	
+	           	$("#inputField").select();
+	           
 	            $("#addNumberBtn").on("click", function() {
 	            	var input = document.getElementById("inputField");
 	            	if(!input.checkValidity()){
 	            		return;
 	            	}
-	               	data.push(input.value);
-	                input.value = "";
+	               	data.push(parseInt(input.value));
+	                input.value = 0;
+	                input.select();
 	                render(data);
 	            })
+	            
+	            $(document).keydown(function(e) {
+	            	if(e.keyCode == 13){
+	            		if(sortingIsRunning){
+	            			$("#nextStepBtn").click();
+	            		}else{
+	            			$("#addNumberBtn").click();	
+	            		}
+	            	}
+				});
 	            
 	            $("#startBtn").on("click", function() {
 	                $("#inputPanel").addClass("hidden");
 	                $("#sortPanel").removeClass("hidden");
+	                sortingIsRunning = true;
 	                sorter = new Sorter(data);
+	            });
+	            
+	            $("#randomBtn").on("click", function(){
+	            	var capacity = 10;
+			        for(var i = 0; i < capacity; i ++){
+			            data.push(getRandomInt(-999, 999));
+			        }
+			        $("#startBtn").click();
+			        render(data);
 	            });
 	            
 	            
@@ -84,7 +111,14 @@
 		           	}
 	            });
 	            
-	            
+	            $("#resetBtn").on("click", function(){
+	            	sortingIsRunning = false;
+	            	sorter = null;
+	            	data = [];
+	            	render(data);
+	            	$("#inputPanel").removeClass("hidden");
+	                $("#sortPanel").addClass("hidden");
+	            })
 	            
 	            function render(data){
 	            	$("#screen").html("");
@@ -92,10 +126,6 @@
 		           		$("#screen").append( "<p>" + data[i] + "</p>" );
 		           	}
 	            }
-            
-                //function getRandomInt(min, max) {
-	        	//	return Math.floor(Math.random() * (max - min)) + min;
-	    		//}
             });
 		</script>
 	</body>
