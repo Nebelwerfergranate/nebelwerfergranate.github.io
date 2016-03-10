@@ -6,6 +6,31 @@ body{
 	background-color:#ffdfb9;
 	font-family: Helvetica, sans-serif;;
 }
+
+/*modal*/
+#mod_window{
+	display: none;
+	position:fixed;
+	bottom: 300px;
+	height: 150px;
+	width: 90%;
+	background-color: #eaecfe;
+	border-radius: 20px;
+	border: 10px solid #cdcae6;
+	text-align: center;
+	margin: 0 5% 7% 5%;
+	z-index: 99;
+}
+#mod_window p{
+	padding: 10px 10px 15px 10px;
+	line-height: 25px;
+}
+#mod_window h2{
+	padding: 10px;
+}
+/*/modal*/
+
+/*container*/
 .container{
 	padding-top: 5%;
 	width: 900px;
@@ -17,20 +42,21 @@ body{
 	margin: auto;
 	margin-top: 70px;
 }
-div.container h1{
+.container h1{
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: auto;
 	text-align: center;
 }
+/*/container*/
+
+/*screen*/
 #screen{
 	float: left;
 	height: auto;
 	width: auto;
-
 	margin: 10px 10px 10px 10px;
-	
 }
 #screen p {
 	float: left;
@@ -44,35 +70,21 @@ div.container h1{
 	border-width: 2px 1px 2px 2px;
 	text-align: center;
 }
-#inputPanel{
-	width: 100%;
-	height: 50px;
-	margin-top: 20%;
-	clear: both;
-	text-align: center;
+
+#screen .selected {
+	background-color: transparent;
+	border-color: #ffd101;
 }
-div#inputPanel h2{
-	width: 100%;
-	padding-bottom: 20px;
+#screen .changed{
+	background-color: transparent;
+	border-color: #236477;
+	color:#ffd101 !important;
 }
-#sortPanel{
-	text-align: center;
-	margin-top: 20%;
-	clear: both;
-	width: 100%;
-	height: 50px;
+#screen .sorted{
+	background-color: #236477;
+	color: #cfdfda;
 }
-div#sortPanel h2{
-	width: 100%;
-	padding-bottom: 20px;
-}
-#inputField{
-	border-radius:3px;
-	border: solid #173042 1px;
-	font-size: 93%;
-	height: 26px;
-	width: 141px;
-}
+/*/screen*/
 
 .btn{
 	border-radius:3px;
@@ -85,30 +97,92 @@ div#sortPanel h2{
 	height: 30px;
 	width: 141px;	
 }
+
+/*inputPanel*/
+#inputPanel{
+	width: 100%;
+	height: 50px;
+	margin-top: 20%;
+	clear: both;
+	text-align: center;
+}
+div#inputPanel h2{
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+#inputField{
+	border-radius:3px;
+	border: solid #173042 1px;
+	font-size: 93%;
+	height: 26px;
+	width: 141px;
+}
+
 #addNumberBtn{
 	height: 30px;
 	width: 170px;
 }
+/*/inputPanel*/
+
+/*sortPanel*/
+#sortPanel{
+	text-align: center;
+	margin-top: 20%;
+	clear: both;
+	width: 100%;
+	height: 50px;
+}
+div#sortPanel h2{
+	width: 100%;
+	padding-bottom: 20px;
+}
+
 #nextStepBtn{
 	height: 30px;
 	width: 184px;
 }
-.hidden{
-	display: none;
-}
+/*/sortPanel*/
 
-#screen .yellow {
+/*comment*/
+#comment{
+	margin-top: 50px;
+	margin-left: 140px;
+}
+.comment_text{
+	display: block;
+	padding: 20px 0 35px 70px;
+}
+#comment h2{
+	padding: 5px 0 10px 225px;
+}
+span#coment_one, span#comment_two, span#comment_tree{
+	clear: both;
+	float: left;
+	text-align: center;
+	height: 42px;
+	width: 50px;
+	padding-top: 20px;
+	border-style: solid;
+	border-radius:3px;
+	border-width: 2px 1px 2px 2px;
+}
+span#coment_one{
 	background-color: transparent;
 	border-color: #ffd101;
 }
-
-#screen .red{
+span#comment_two{
 	background-color: transparent;
 	border-color: #236477;
-	color:#ffd101 !important;
+	color:#ffd101;
 }
-
-#screen .sorted{
+span#comment_tree{
 	background-color: #236477;
-	color: #cfdfda;
+	border-color: #236477;
+	color:#cfdfda;
+}
+/*/comment*/
+
+.hidden{
+	display: none;
 }

@@ -21,6 +21,11 @@
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<div id="mod_window">
+			<h2>Ошибка</h2>
+			<p id="mod_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi possimus voluptatum magnam deleniti, laudantium, esse, autem tempore modi quo cumque. Harum fuga reiciendis quae earum nihil praesentium, magnam, dolores.</p>
+		</div>
+		
 		<div class="container">
 			<h1>Пузырьковая сортировка</h1>
 			<div id="screen"></div>
@@ -38,13 +43,17 @@
 				<button id="autoSortBtn" class="btn">Для ленивых</button>
 			</div>
 			
+			<div id="comment">
+				<h2>Обозначения:</h2>
+				<p><span id="coment_one">1</span><span class="comment_text">Перестановка не требуется</span></p>
+				<p><span id="comment_two">2</span><span class="comment_text">Перестановка выполнена</span></p>
+				<p><span id="comment_tree">3</span><span class="comment_text">Уже отсортированные</span></p>
+			</div>
+			
 			<!-- в элементе с id="mocha" будут результаты тестов -->
   			<div id="mocha"></div>
 		</div>
 		
-			<!-- в элементе с id="mocha" будут результаты тестов -->
-  			<div id="mocha"></div>
-		</div>
 		
 		
 		<!-- Скрипты -->
@@ -60,7 +69,10 @@
 			$().ready(function(){
 	            var data = [];
 	           	var sorter = null;
-	           	var sortingIsRunning = false;
+	           	
+	           	var sortingIsRunning = false; // для работы обработчика нажатия клавиши enter.
+	           	
+	           	// для работы автоматической сортировки.
 	           	var intervalId = null;
 	           	var autosortIsRunning = false;
 	           	
@@ -70,9 +82,26 @@
 	           
 	            $("#addNumberBtn").on("click", function() {
 	            	var input = document.getElementById("inputField");
+	            	var msg = $("#mod_text");
+	            	
 	            	if(!input.checkValidity()){
+	            		if(input.validity.valueMissing){
+	            			msg.text("Число не было введено");
+	            		} else if(input.validity.rangeOverflow){
+	            			msg.text("Число не должно быть более " + input.max);
+	            		} else if(input.validity.rangeUnderflow){
+	            			msg.text("Число не должно быть менее " + input.min);
+	            		} else if(input.validity.stepMismatch){
+	            			msg.text("Дробные числа не поддерживаются");
+	            		} else {
+	            			msg.text("Упс... что-то пошло не так :(");
+	            		}
+	            		
+	            		$("#mod_window").fadeIn();
+	            		closeModal();
 	            		return;
 	            	}
+	            	
 	               	data.push(parseInt(input.value));
 	                input.value = 0;
 	                input.select();
@@ -81,6 +110,7 @@
 	            
 	            $(document).keydown(function(e) {
 	            	if(e.keyCode == 13){
+	            		e.preventDefault();
 	            		if(sortingIsRunning){
 	            			$("#nextStepBtn").click();
 	            		}else{
@@ -115,11 +145,11 @@
 	            	render(sorter.data, sorter.numbersSorted);
 		           	
 		           	if(sorter.isChanged){
-		           		$("#screen p").eq(sorter.position).addClass("red");
-		            	$("#screen p").eq(sorter.position + 1).addClass("red");
+		           		$("#screen p").eq(sorter.position).addClass("changed");
+		            	$("#screen p").eq(sorter.position + 1).addClass("changed");
 		           	} else{
-		           		$("#screen p").eq(sorter.position).addClass("yellow");
-		            	$("#screen p").eq(sorter.position + 1).addClass("yellow");	
+		           		$("#screen p").eq(sorter.position).addClass("selected");
+		            	$("#screen p").eq(sorter.position + 1).addClass("selected");	
 		           	}
 	            });
 	            
@@ -164,6 +194,13 @@
 		           		}
 	            	}
 	            }
+	            
+	            function closeModal(){
+	            	setTimeout(function(){
+	            		$("#mod_window").fadeOut();
+	            		$("#mod_text").text("");
+	            	}, 2000);
+	            };
             });
 		</script>
 	</body>
