@@ -22,19 +22,25 @@
 	</head>
 	<body>
 		<div class="container">
-			<div id="inputPanel">
-				<input id="inputField" type="number" min="-999" max="999" step="1" value="0" required/>
-				<button id="addNumberBtn">Добавить число (enter)</button>
-				<button id="startBtn">Начать сортировку</button>
-				<button id="randomBtn">Для ленивых</button>
-			</div>
+			<h1>Пузырьковая сортировка</h1>
 			<div id="screen"></div>
+			<div id="inputPanel">
+				<h2>Создайте массив</h2>
+				<input id="inputField" type="number" min="-999" max="999" step="1" value="0" required/>
+				<button id="addNumberBtn" class="btn">Добавить число (enter)</button>
+				<button id="startBtn" class="btn">Начать сортировку</button>
+				<button id="randomBtn" class="btn">Для ленивых</button>
+			</div>
 			<div id="sortPanel" class="hidden">
-				<button id="nextStepBtn">Следующий шаг (enter)</button>
-				<button id="resetBtn">Сброс</button>
+				<h2>Выполнение сортировки</h2>
+				<button id="nextStepBtn" class="btn">Следующий шаг (enter)</button>
+				<button id="resetBtn" class="btn">Сброс</button>
 			</div>
 			
-			<div class="clear"></div>
+			<!-- в элементе с id="mocha" будут результаты тестов -->
+  			<div id="mocha"></div>
+		</div>
+		
 			<!-- в элементе с id="mocha" будут результаты тестов -->
   			<div id="mocha"></div>
 		</div>
@@ -81,6 +87,9 @@
 				});
 	            
 	            $("#startBtn").on("click", function() {
+	            	if(data.length < 2){
+	            		return;
+	            	}
 	                $("#inputPanel").addClass("hidden");
 	                $("#sortPanel").removeClass("hidden");
 	                sortingIsRunning = true;

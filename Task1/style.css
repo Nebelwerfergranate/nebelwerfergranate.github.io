@@ -3,50 +3,107 @@
 	padding: 0;
 }
 body{
-	background-color: aqua;
+	background-color:#ffdfb9;
+	font-family: Helvetica, sans-serif;;
 }
 .container{
-	padding-top: 10%;
-	width: 60%;
-	background-color: #fff;
+	padding-top: 5%;
+	width: 900px;
+	height: 100%;
+	background-color: #eaecfe;
+	border: 2px solid #ffd101;
+	border-radius: 6px;
+	border-width: 2px 4px 4px 2px;
 	margin: auto;
-	margin-top: 10px;
+	margin-top: 70px;
 }
-#btn{
-	display: block;
-	clear: both;
-	height: 30px;
-	width: 200px;
-	margin: 10px 10px 10px 10px;
+div.container h1{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	text-align: center;
 }
 #screen{
 	float: left;
+	height: auto;
+	width: auto;
+
 	margin: 10px 10px 10px 10px;
-	border-color: #444;
-	border-style: solid;
+	
 }
 #screen p {
-	display: block;
 	float: left;
 	height: 42px;
 	width: 50px;
 	padding-top: 20px;
-	border-left: 1px solid #444;
+	margin-left: 1px;
+	border-color: #cdcae6;
+	border-style: solid;
+	border-radius:3px;
+	border-width: 2px 1px 2px 2px;
 	text-align: center;
 }
+#inputPanel{
+	width: 100%;
+	height: 50px;
+	margin-top: 20%;
+	clear: both;
+	text-align: center;
+}
+div#inputPanel h2{
+	width: 100%;
+	padding-bottom: 20px;
+}
+#sortPanel{
+	text-align: center;
+	margin-top: 20%;
+	clear: both;
+	width: 100%;
+	height: 50px;
+}
+div#sortPanel h2{
+	width: 100%;
+	padding-bottom: 20px;
+}
+#inputField{
+	border-radius:3px;
+	border: solid #173042 1px;
+	font-size: 93%;
+	height: 26px;
+	width: 141px;
+}
 
+.btn{
+	border-radius:3px;
+	border: solid #173042 1px;
+	background-color: #236477;
+	padding: 0;
+	color:#cfdfda;
+	font-size: 85%;
+	margin-left: 10px;
+	height: 30px;
+	width: 141px;	
+}
+#addNumberBtn{
+	height: 30px;
+	width: 170px;
+}
+#nextStepBtn{
+	height: 30px;
+	width: 184px;
+}
 .hidden{
 	display: none;
 }
 
-.clear{
-	clear: both;
+#screen .yellow {
+	background-color: transparent;
+	border-color: #ffd101;
 }
 
-.yellow {
-	background-color: yellow;
-}
-
-.red{
-	background-color: red;
+#screen .red{
+	background-color: transparent;
+	border-color: #236477;
+	color:#ffd101;
 }
