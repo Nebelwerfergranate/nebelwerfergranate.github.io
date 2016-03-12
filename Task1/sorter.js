@@ -1,10 +1,9 @@
 function Sorter(data) {
     //Fields
-    var temp;
-    var i = data.length - 1;
-    var j = 0;
+    var max = data.length - 1;
+    var current = 0;
     var data = data;
-    var isChanged = false;
+    var isSwapped = false;
     var position = 0;
     
     //Properties
@@ -16,37 +15,42 @@ function Sorter(data) {
 		return position;
 	});
 
-    this.__defineGetter__("isChanged", function(){
-		return isChanged;
+    this.__defineGetter__("isSwapped", function(){
+		return isSwapped;
 	});
 	
 	this.__defineGetter__("numbersSorted", function(){
-	    if(j === i) {
-	        return data.length - i;
+	    if(current === max) {
+	        return data.length - max;
 	    }
-	    return data.length - i - 1;
+	    return data.length - max - 1;
 	});
     
     //Methods
     this.nextStep = function(){
-        isChanged = false;
+        isSwapped = false;
         
-        if(j === i){
-            j = 0;
-            i--;
+        if(current === max){
+            current = 0;
+            max--;
         }
         
-        if(i <= 0){
+        if(max <= 0){
             return;
         }
         
-        if (data[j] > data[j+1]) {
-            temp = data[j];
-            data[j] = data[j+1];
-            data[j+1] = temp;
-            isChanged = true;
+        if (data[current] > data[current + 1]) {
+            swap();
+            isSwapped = true;
         }
-        position = j;
-        j++;
+        position = current;
+        current++;
     };
+    
+    function swap(){
+        temp = data[current];
+        data[current] = data[current + 1];
+        data[current + 1] = temp;
+        var temp;
+    }
 }

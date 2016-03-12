@@ -2,7 +2,7 @@
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />
-		<title>Заголовок</title>
+		<title>Пузырьковая сортировка</title>
 		
 		<!-- подключаем mocha -->
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
@@ -60,7 +60,8 @@
 		<script type="text/javascript" src="sorter.js"></script>
 		<script type="text/javascript" src="utils.js"></script>
 		
-  		<script src="test.js"></script>
+		<script src="Test/StepByStepComparer.js"></script>
+  		<script src="Test/test.js"></script>
   		<script>
   			mocha.run();
   		</script>
@@ -144,7 +145,7 @@
 	            	
 	            	render(sorter.data, sorter.numbersSorted);
 		           	
-		           	if(sorter.isChanged){
+		           	if(sorter.isSwapped){
 		           		$("#screen p").eq(sorter.position).addClass("changed");
 		            	$("#screen p").eq(sorter.position + 1).addClass("changed");
 		           	} else{
