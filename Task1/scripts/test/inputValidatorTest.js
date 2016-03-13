@@ -60,4 +60,11 @@ function InputValidatorTest() {
         assert.equal(result.hasError, true, "Валидация дробных значений некорректна");
         assert.notEqual(result.message, "", "Для дробных значений сообщение об ошибке не выводится");
     }
+    
+    function intIsInt(){
+        input = getNumberInput(10);
+        result = validator.validateNumber(input);
+        assert.equal(result.hasError, false, "Валидация целочисленных значений некорректна");
+        assert.Equal(result.message, "", "Для целочисленных выводится сообщение об ошибке");
+    }
 }
