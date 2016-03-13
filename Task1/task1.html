@@ -6,7 +6,7 @@
 		
 		<!-- подключаем mocha -->
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
-	    <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="styles/site.css">
 	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
 		<script>
 			mocha.setup('bdd'); // настраиваем Mocha на BDD-тестирование
@@ -22,8 +22,8 @@
 	</head>
 	<body>
 		<div id="mod_window">
-			<h2>Ошибка</h2>
-			<p id="mod_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi possimus voluptatum magnam deleniti, laudantium, esse, autem tempore modi quo cumque. Harum fuga reiciendis quae earum nihil praesentium, magnam, dolores.</p>
+			<h2 id="mod_header"></h2>
+			<p id="mod_text"></p>
 		</div>
 		
 		<div class="container">
@@ -57,152 +57,19 @@
 		
 		
 		<!-- Скрипты -->
-		<script type="text/javascript" src="sorter.js"></script>
-		<script type="text/javascript" src="utils.js"></script>
+		<script type="text/javascript" src="scripts/sorter.js"></script>
+		<script type="text/javascript" src="scripts/inputValidator.js"></script>
+		<script type="text/javascript" src="scripts/utils.js"></script>
 		
-		<script src="Test/StepByStepComparer.js"></script>
-  		<script src="Test/test.js"></script>
+		
+		<script src="scripts/test/stepByStepComparer.js"></script>
+		<script src="scripts/test/inputValidatorTest.js"></script>
+  		<script src="scripts/test/test.js"></script>
   		<script>
   			mocha.run();
   		</script>
-		
-		<script>
-			$().ready(function(){
-	            var data = [];
-	           	var sorter = null;
-	           	
-	           	var sortingIsRunning = false; // для работы обработчика нажатия клавиши enter.
-	           	
-	           	// для работы автоматической сортировки.
-	           	var intervalId = null;
-	           	var autosortIsRunning = false;
-	           	
-	           	var getRandomInt = Utils.getRandomInt;
-	           	
-	           	$("#inputField").select();
-	           
-	            $("#addNumberBtn").on("click", function() {
-	            	var input = document.getElementById("inputField");
-	            	var msg = $("#mod_text");
-	            	
-	            	if(!input.checkValidity()){
-	            		if(input.validity.valueMissing){
-	            			msg.text("Число не было введено");
-	            		} else if(input.validity.rangeOverflow){
-	            			msg.text("Число не должно быть более " + input.max);
-	            		} else if(input.validity.rangeUnderflow){
-	            			msg.text("Число не должно быть менее " + input.min);
-	            		} else if(input.validity.stepMismatch){
-	            			msg.text("Дробные числа не поддерживаются");
-	            		} else {
-	            			msg.text("Упс... что-то пошло не так :(");
-	            		}
-	            		
-	            		$("#mod_window").fadeIn();
-	            		closeModal();
-	            		return;
-	            	}
-	            	
-	               	data.push(parseInt(input.value));
-	                input.value = 0;
-	                input.select();
-	                render(data);
-	            })
-	            
-	            $(document).keydown(function(e) {
-	            	if(e.keyCode == 13){
-	            		e.preventDefault();
-	            		if(sortingIsRunning){
-	            			$("#nextStepBtn").click();
-	            		}else{
-	            			$("#addNumberBtn").click();	
-	            		}
-	            	}
-				});
-	            
-	            $("#startBtn").on("click", function() {
-	            	if(data.length < 2){
-	            		return;
-	            	}
-	                $("#inputPanel").addClass("hidden");
-	                $("#sortPanel").removeClass("hidden");
-	                sortingIsRunning = true;
-	                sorter = new Sorter(data);
-	            });
-	            
-	            $("#randomBtn").on("click", function(){
-	            	var capacity = 10;
-			        for(var i = 0; i < capacity; i ++){
-			            data.push(getRandomInt(-999, 999));
-			        }
-			        $("#startBtn").click();
-			        render(data);
-	            });
-	            
-	            
-	            $("#nextStepBtn").on("click", function(){
-	            	sorter.nextStep();
-	            	
-	            	render(sorter.data, sorter.numbersSorted);
-		           	
-		           	if(sorter.isSwapped){
-		           		$("#screen p").eq(sorter.position).addClass("changed");
-		            	$("#screen p").eq(sorter.position + 1).addClass("changed");
-		           	} else{
-		           		$("#screen p").eq(sorter.position).addClass("selected");
-		            	$("#screen p").eq(sorter.position + 1).addClass("selected");	
-		           	}
-	            });
-	            
-	            $("#resetBtn").on("click", function(){
-	            	sortingIsRunning = false;
-	            	sorter = null;
-	            	data = [];
-	            	render(data);
-	            	$("#inputPanel").removeClass("hidden");
-	                $("#sortPanel").addClass("hidden");
-	                autosortIsRunning = false;
-	                clearInterval(intervalId);
-	                $("#autoSortBtn").text("Для ленивых");
-	            })
-	            
-	            $("#autoSortBtn").on("click", function(){
-		            autosortIsRunning = !autosortIsRunning;
-	            	
-	            	if(autosortIsRunning){
-	            		$("#autoSortBtn").text("Стоп");
-	            		intervalId = setInterval(function(){
-		            		if(sorter.numbersSorted < sorter.data.length){
-		            			$("#nextStepBtn").click();
-		            		}
-		            		else{
-		            			clearInterval(intervalId);
-		            		}
-		            	}, 500);	
-	            	} else{
-	            		clearInterval(intervalId);
-	            		$("#autoSortBtn").text("Продолжить");
-	            	}
-	            });
-	            
-	            function render(data, numbersSorted){
-	            	var numbersSorted = numbersSorted || 0;
-	            	$("#screen").html("");
-	            	for(var i = 0; i < data.length; i++){
-		           		$("#screen").append( "<p>" + data[i] + "</p>" );
-		           		if(data.length - i <= numbersSorted){
-		           			$("#screen p").eq(i).addClass("sorted");	
-		           		}
-	            	}
-	            }
-	            
-	            function closeModal(){
-	            	setTimeout(function(){
-	            		$("#mod_window").fadeOut();
-	            		$("#mod_text").text("");
-	            	}, 2000);
-	            };
-            });
-		</script>
+  		
+  		<script type="text/javascript" src="scripts/modalWindow.js"></script>
+		<script type="text/javascript" src="scripts/main.js"></script>
 	</body>
 </html>

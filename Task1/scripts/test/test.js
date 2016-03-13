@@ -3,3 +3,7 @@ describe("Sorter", function(){
     it("Пошаговое сравнение с эталонной сортировкой", stepByStepComparer.run);
 });
 
+describe("InputValidator", function(){
+    var validatorTester = new InputValidatorTest();
+    it("Валидация целого числа", validatorTester.validateInt);
+});
