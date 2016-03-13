@@ -9,6 +9,7 @@ function InputValidatorTest() {
         intTooSmallTest();
         intTooBigTest();
         intIsDoubleTest();
+        intIsIntTest();
     }
 
     function getNumberInput(value) {
@@ -55,16 +56,19 @@ function InputValidatorTest() {
     }
 
     function intIsDoubleTest() {
-        input = getNumberInput(10.3);
+        input = getNumberInput();
+        var min = Utils.getRandomInt(-999, 0);
+        input.min = min;
+        input.value = min + 0.5;
         result = validator.validateNumber(input);
         assert.equal(result.hasError, true, "Валидация дробных значений некорректна");
         assert.notEqual(result.message, "", "Для дробных значений сообщение об ошибке не выводится");
     }
     
-    function intIsInt(){
-        input = getNumberInput(10);
+    function intIsIntTest(){
+        input = getNumberInput(Utils.getRandomInt(-999, 999));
         result = validator.validateNumber(input);
         assert.equal(result.hasError, false, "Валидация целочисленных значений некорректна");
-        assert.Equal(result.message, "", "Для целочисленных выводится сообщение об ошибке");
+        assert.equal(result.message, "", "Для целочисленных выводится сообщение об ошибке");
     }
 }
