@@ -88,18 +88,7 @@ $().ready(function() {
         }
     }
 
-    function onKeyDown(e) {
-        if (e.keyCode == 13) {
-            e.preventDefault();
-            if (sortingIsRunning) {
-                $("#nextStepBtn").click();
-            }
-            else {
-                $("#addNumberBtn").click();
-            }
-        }
-    }
-
+    
     function onResetBtnClick() {
         sortingIsRunning = false;
         sorter = null;
@@ -129,6 +118,18 @@ $().ready(function() {
         else {
             clearInterval(intervalId);
             $("#autoSortBtn").text("Продолжить");
+        }
+    }
+
+    function onKeyDown(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            if (sortingIsRunning) {
+                $("#nextStepBtn").click();
+            }
+            else {
+                $("#addNumberBtn").click();
+            }
         }
     }
 });
