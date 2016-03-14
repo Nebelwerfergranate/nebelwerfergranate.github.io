@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    
+    
+    <title>Calculator</title>
+    
+</head>
+<body>
+    <div id="calculator-wrap">
+    <form name="calc" action="">
+        <div id="wide-wrap">
+           
+         	<input id="edit-wide" name="ReadOut" type="Text" value="0"/>
+        </div>
+        
+        <div id="buttons">
+        
+            <div id="topbutt">
+                <input name="btnClear" class="longbutt" type="button" value="AC" onclick="Clear()" />
+                <input name="btnDivide" type="Button" value=" / " onclick="Operation('/')" />
+                <input name="btnMultiply" type="Button" value="*" onclick="Operation('*')" />
+            </div>
+            
+            <div id="number-1to9">
+                <input name="btnSeven" type="Button" value="7" onclick="NumPressed(7)" />
+                <input name="btnEight" type="Button" value="8" onclick="NumPressed(8)" />
+                <input name="btnNine" type="Button" value="9" onclick="NumPressed(9)" />
+                <input name="btnFour" type="Button" value="4" onclick="NumPressed(4)" />
+                <input name="btnFive" type="Button" value="5" onclick="NumPressed(5)" />
+                <input name="btnSix" type="Button" value="6" onclick="NumPressed(6)" />
+                <input name="btnOne" type="Button" value="1" onclick="NumPressed(1)" />
+                <input name="btnTwo" type="Button" value="2" onclick="NumPressed(2)" />
+                <input name="btnThree" type="Button" value="3" onclick="NumPressed(3)" />
+            </div>
+            
+            <div id="plus-minus">
+                <input name="btnMinus" type="Button" value="-" onclick="Operation('-')" />
+                <input name="btnPlus" class="plusbutt" type="button" value="+" onclick="Operation('+')" />
+            </div>
+            
+            <div id="botbutt">
+                <input name="btnZero" type="Button" value="0" onclick="NumPressed(0)" />
+                <input name="btnDecimal" type="Button" value="." onclick="Decimal()" />
+               <input name="btnEquals" class="longbutt" type="button" value="=" onclick="Operation('=')" />
+            </div>
+            
+        </div>
+    </form>
+    </div>
+ <script src="scripts/script.js"></script>
+</body>
+</html>
