@@ -11,7 +11,7 @@
     border-radius: 15px;
 }
 
-/* ---------------------------ПОЛЕ ВЫВОДА ЧИСЕЛ------------------------ */
+/* ---------------NUMBERS OUTPUT FIELD--------------- */
 
 #wide-wrap{
     width: 284px;
@@ -28,9 +28,14 @@
     text-align: right;
 }
 
-/* ---------------------------КЛАВИАТУРА------------------------ */
+#edit-wide.smallDigits{
+    font-size: 22px;
+    padding-top: 22px;
+}
 
-/* общие */
+/* ---------------KEYBOARD--------------- */
+
+/* global */
 
 #buttons{
     width: 300px;
@@ -59,7 +64,7 @@
     box-shadow: inset 0px 0px 10px 5px rgba(255, 255, 190, 0.6);
 }
 
-/* для чисел от 1 до 9 */
+/* for 1 to 9 numbers*/
 
 #number-1to9{
     width: 225px; 
@@ -67,7 +72,7 @@
     float: left;  
 }
 
-/* стили для разных кнопок */
+/* other buttons' styles */
 
 #topbutt input{
     width: 68px;
