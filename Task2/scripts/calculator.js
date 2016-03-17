@@ -7,16 +7,13 @@ function Calculator() {
 }
 
 Calculator.prototype.numPressed = function(num) {
-    if(!this._numberIsNew){
+    if(!this._numberIsNew && this.screenVal !== "0"){
         this.screenVal = this.screenVal.concat(num.toString());
         this._numberIsNew = false;
         return;
     }
-    
-    if(num.toString() !== "0"){
-        this._numberIsNew = false;
-    }
 
+    this._numberIsNew = false;
     this.screenVal = num.toString();
 };
 
