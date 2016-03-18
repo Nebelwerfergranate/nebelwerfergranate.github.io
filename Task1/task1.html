@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Пузырьковая сортировка</title>
+		
+		<!-- подключаем mocha -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+	    <link rel="stylesheet" href="styles/site.css">
+	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+		<script>
+			mocha.setup('bdd'); // настраиваем Mocha на BDD-тестирование
+	 	</script>
+	
+	  	<!-- подключаем chai -->
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+	  	<script>
+	    	var assert = chai.assert; // выносим assert в глобальную область
+	  	</script>
+	  	
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="mod_window">
+			<h2 id="mod_header"></h2>
+			<p id="mod_text"></p>
+		</div>
+		
+		<div class="container">
+			<h1>Пузырьковая сортировка</h1>
+			<div id="screen"></div>
+			<div id="inputPanel">
+				<h2>Создайте массив</h2>
+				<input id="inputField" type="number" min="-999" max="999" step="1" value="0" required/>
+				<button id="addNumberBtn" class="btn">Добавить число (enter)</button>
+				<button id="startBtn" class="btn">Начать сортировку</button>
+				<button id="randomBtn" class="btn">Для ленивых</button>
+			</div>
+			<div id="sortPanel" class="hidden">
+				<h2>Выполнение сортировки</h2>
+				<button id="nextStepBtn" class="btn">Следующий шаг (enter)</button>
+				<button id="resetBtn" class="btn">Сброс</button>
+				<button id="autoSortBtn" class="btn">Для ленивых</button>
+			</div>
+			
+			<div id="comment">
+				<h2>Обозначения:</h2>
+				<p><span id="coment_one">1</span><span class="comment_text">Перестановка не требуется</span></p>
+				<p><span id="comment_two">2</span><span class="comment_text">Перестановка выполнена</span></p>
+				<p><span id="comment_tree">3</span><span class="comment_text">Уже отсортированные</span></p>
+			</div>
+			
+			<!-- в элементе с id="mocha" будут результаты тестов -->
+  			<div id="mocha"></div>
+		</div>
+		
+		
+		
+		<!-- Скрипты -->
+		<script type="text/javascript" src="scripts/sorter.js"></script>
+		<script type="text/javascript" src="scripts/inputValidator.js"></script>
+		<script type="text/javascript" src="scripts/utils.js"></script>
+		
+		
+		<script src="scripts/test/stepByStepComparer.js"></script>
+		<script src="scripts/test/inputValidatorTest.js"></script>
+  		<script src="scripts/test/test.js"></script>
+  		<script>
+  			mocha.run();
+  		</script>
+  		
+  		<script type="text/javascript" src="scripts/modalWindow.js"></script>
+		<script type="text/javascript" src="scripts/main.js"></script>
+	</body>
+</html>
