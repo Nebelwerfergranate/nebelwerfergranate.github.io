@@ -1,3 +1,5 @@
+"use strict";
+
 document.body.onload = function() {
 	var calc = document.calc;
 	var model = new Calculator();

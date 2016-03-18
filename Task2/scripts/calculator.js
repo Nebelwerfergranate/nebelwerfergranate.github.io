@@ -1,3 +1,5 @@
+"use strict";
+
 function Calculator() {
     this._result = 0;
     this._pendingOp = operationTypes.noOperation;
@@ -40,7 +42,7 @@ Calculator.prototype.doOperation = function(op) {
     }
     
     this.screenVal = this._result.toString();
-}
+};
 
 Calculator.prototype.toDecimal = function() {
     if (this.screenVal === "0") {

@@ -1,3 +1,5 @@
+"use strict";
+
 var operationTypes = {
     noOperation: 0,
     add: 1,
