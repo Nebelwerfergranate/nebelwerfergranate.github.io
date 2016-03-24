@@ -4,12 +4,30 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Minesweeper</title>
-    <link rel="stylesheet" href="styles/site.css" >
+    <link rel="stylesheet" href="styles/site.css">
 </head>
 
 <body>
     <div id="text"></div>
+    <div id="mineField"></div>
 
+    <script type="text/template" id="mineField-template">
+        <% for (let y = 0; y < height; y++) { %>
+            <div class="row">
+            <% for (let x = 0; x < width; x++) { %>
+                    <div class="cell js-undiscovered <%-mineField[y][x].cellType === cellTypes.bombCell ? 'js-bomb' : ''%>"
+                        data-pos-x="<%-x%>" data-pos-y="<%-y%>" data-selector="cell">
+                        <%- mineField[y][x].bombsAround %>
+                    </div>
+            <% } %>
+            </div>
+        <% } %>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+
+    <script src="scripts/cellTypes.js"></script>
+    <script src="scripts/minesweeper.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 
