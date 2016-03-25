@@ -1,0 +1,244 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+div.bg-box{
+	width: 100%;
+	height: auto;
+	background-color: #3F046F;
+}
+div.header{
+	height: 100px; width: 900px;
+	margin: auto;
+	background-color: #582781;
+	text-align: center;
+}
+div.header h1{
+	color: #fff;
+	padding-top: 49px;
+	background: url(../images/icon-bomp.png) no-repeat scroll 0px 64px;
+}
+
+div.container{
+	height: auto; width: 900px;
+	margin: auto;
+	padding: 0 0 40px 0;
+	background-color: #9240D5;
+}
+div.footer{
+	height: 100px; width: 900px;
+	margin: auto;
+	background: url(../images/icon-bomp.png) #582781 no-repeat scroll 0px -43px;
+}
+div.item_container{
+	float: left;
+	margin: 50px 50px 0 123px;
+	margin-bottom: 30px;
+	width: 100px;
+	height: 50px;
+	background-color: #582781;
+	text-align: right;
+	color:#fff;
+	border: 1px solid #3F046F;
+}
+div.item_container h4{
+	font-size: 40px;
+	padding-left: 4px;
+}
+
+/*===============================================================================
+		Difficulty Level and Bombs Quantity
+================================================================================*/
+div.options{
+	clear:both;
+	height: auto; width: 100%;
+}
+div.level button{
+	height: 30px; width: 116px;
+	margin: 15px 31px 10px 122px;
+	color: white;
+	background-color: #9240D5;
+}
+button.js-active{
+	background-color:  #582781  !important;
+}
+div.bombs-quantity h3{
+	float: left;
+	color: #fff;
+	margin: 30px 52px 40px 144px;
+}
+div.bombs-quantity input{
+	float: left;
+	margin-top: 30px;
+}
+div.bombs-quantity span{
+	float: left;
+	height: 10px; width: 10px;
+	margin: 12px 5px 0px 5px;
+	color: #fff;
+	font-size: 30px;
+	padding: 10px;
+}
+
+/*================================================================================
+		Icons
+===============================================================================*/
+button.normal{
+	float: left;
+	width: 70px;
+	height: 67px;
+	margin: 52px 70px 0 141px;
+	background: url(../images/face.png) #582781 no-repeat scroll 1px -66px;
+}
+button.success{
+	float: left;
+	width: 70px;
+	height: 67px;
+	margin: 52px 70px 0 141px;
+	background: url(../images/face.png) #582781 no-repeat scroll 1px -130px;
+}
+button.death{
+	float: left;
+	width: 70px;
+	height: 67px;
+	margin: 52px 70px 0 141px;
+	background: url(../images/face.png) #582781 no-repeat scroll 1px 3px;
+}
+
+/*==============================================================================
+		Minefield cells
+===============================================================================*/
+div.mine-field{
+	clear:both;
+	overflow: hidden;
+	width: auto;
+	height: auto;
+	margin: 0 58px 0 58px;
+	border: 2px solid #3F046F;
+}
+
+div.row {
+    clear: both;
+}
+
+div.cell{
+	float: left;
+	color:white;
+	font-size: 18px;
+	padding-left: 8px;
+	background-color:#9240D5;
+	height: 22px; width: 16px;
+	border: 1px solid white;
+}
+
+div.js-bomb{ 
+	float: left;
+	padding-left: 5px;
+	height: 22px; width: 19px;
+	border: 1px solid white;
+	background: url(../images/icon-bomp.png) #9240D5 no-repeat scroll 1px -2px;
+}
+
+div.js-undiscovered{
+	float: left;
+	padding-left: 5px;
+	background-color:#582781;
+	height: 22px; width: 19px;
+	border: 1px solid white;
+	color: transparent;
+	background-image: none;
+}
+
+div.js-flag{
+	float: left;
+	padding-left: 5px;
+	height: 22px; width: 19px;
+	border: 1px solid white;
+	background: url(../images/icon-bomp.png) #582781 no-repeat scroll 0px -46px;
+	color: transparent;
+}
+
+div.js-explosion{
+	float: left;
+	padding-left: 5px;
+	height: 22px; width: 19px;
+	border: 1px solid white;
+	background: url(../images/icon-bomp.png) #9240D5 no-repeat scroll 0px -23px;
+	color: transparent;
+}
+
+/*========================================================
+		Modal Window
+========================================================*/
+div.modal-window{
+	position: absolute;
+	top:45%;
+	left: 35%;
+	height: 200px; width: 30%;
+	background-color: #582781;
+	border-style: solid;
+	border-width: 2px 4px 4px 2px;
+	border-color: #000;
+	text-align: center;
+}
+
+div.masage-header h3{
+	padding-top: 10px;
+	color: #fff;
+}
+div.masage-body p{
+	padding-top: 20px;
+	color: #fff;
+}
+
+
+/*========================================================
+		Other
+========================================================*/
+.js-hidden{
+	display: none;
+}
+
+
+
+
+
+/*#mineField .cell {
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    width: 20px;
+    height: 20px;
+    border: 1px solid lightgray;
+    background-color: lightgray;
+}
+
+
+
+#mineField .js-bomb {
+    background-color: red;
+    color: red;
+    border-radius: 4px;
+}
+
+#mineField .js-undiscovered {
+    background-color: white;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+#mineField .js-flag {
+    background-color: green;
+    color: green;
+}
+
+#text {
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+}*/
+
+
