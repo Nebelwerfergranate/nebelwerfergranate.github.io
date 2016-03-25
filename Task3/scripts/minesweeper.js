@@ -27,7 +27,7 @@ class Minesweeper {
             let y = yPos + Math.floor(i / 3) - 1;
 
 
-            if (this.mineField[x] == null || this.mineField[x][y] == null) {
+            if (this.getCellXY(x,y) == null) {
                 continue;
             }
 
@@ -41,6 +41,9 @@ class Minesweeper {
     }
     
     getCellXY(xPos, yPos){
+        if(this.mineField[yPos] == null || this.mineField[yPos][xPos] == null){
+            return null;
+        }
         return this.mineField[yPos][xPos];
     }
     
@@ -92,7 +95,8 @@ class Minesweeper {
     }
 
     _checkBombIsRequired() {
-        return Math.random() * this.height * this.width < this.bombProbability;
+        //return Math.random() * this.height * this.width < this.bombProbability;
+        return Math.random() * 100 <= this.bombProbability;
     }
 
     _calculateBombs() {
@@ -109,18 +113,12 @@ class Minesweeper {
         let bombs = 0;
 
         for(let i = 0; i < neighbors.length; i++){
-            if (this.mineField[neighbors[i].yPos][neighbors[i].xPos].cellType === cellTypes.bombCell) {
+
+            if(this.getCellXY(neighbors[i].xPos, neighbors[i].yPos).cellType === cellTypes.bombCell) {
                 bombs++;
             }
         }
-        // neighbors.map(function(cell) {
 
-        //     if (this.mineField[cell.yPos][cell.xPos].cellType === cellTypes.bombCell) {
-        //         bombs++;
-        //     }
-        // }, this);
-
-        //this.mineField[xPos][yPos].bombsAround = bombs;
         this.mineField[yPos][xPos].bombsAround = bombs;
     }
 

@@ -8,7 +8,7 @@ class MineField extends Component {
         this._model = new Minesweeper({
             width: 16,
             height: 16,
-            bombProbability: 60
+            bombProbability: 30
         });
         this._numberOfBombs = this._model.numberOfBombs;
 
