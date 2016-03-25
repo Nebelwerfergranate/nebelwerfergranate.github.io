@@ -22,31 +22,35 @@
 			<!--</div>-->
 			
 			<div class="item_container">
-				<h4 id="js-bombsRemain">1</h4>
+				<h4 data-selector="bombsRemain"></h4>
     		</div>
     		
     		<div class="options">
-    			<!--<div class="level">-->
-    			<!--	<button id="js-rookieBtn">Rookie</button>-->
-    			<!--	<button id="js-veteranBtn">Veteran </button>-->
-    			<!--	<button id="js-expertBtn">Expert</button>-->
-    			<!--</div>-->
-    			<!--<div class="bombs-quantity">-->
-    			<!--	<h3>Bombs amount</h3>-->
-    			<!--	<span>-</span>-->
-    			<!--	<input id="js-bombProbabilityField" type="range" min="20" max="70" step="1" value="30"> -->
-    			<!--	<span>+</span>-->
-    			<!--</div>-->
+    			<div class="level">
+    				<button id="js-rookieBtn">Rookie</button>
+    				<button id="js-veteranBtn">Veteran </button>
+    				<button id="js-expertBtn">Expert</button>
+    			</div>
+    			<div class="bombs-quantity">
+    				<h3>Bombs quantity</h3>
+    				<span>-</span>
+    				<input data-selector="bombsQuantity" type="range" min="20" max="40" step="1" value="30"> 
+    				<span>+</span>
+    				<div class="clear"></div>
+    			</div>
     		</div>
     		
-    		<div class="mine-field" data-component="mineField"></div>
+    		<div class="mine-field-container">
+    		    <div class="mine-field" data-component="mineField"></div>
+    		</div>
+    		
 		</div>
 		
 		<div class="footer"></div>
 	</div>
     
     
-    <div id="modal" class="modal-window js-hidden" data-component="modal-window"></div>
+    <div id="modal" class="modal-window js-hidden" data-component="modalWindow"></div>
 
     <script type="text/template" id="mineField-template">
         <% for (let y = 0; y < height; y++) { %>
@@ -70,7 +74,7 @@
 
     <script src="scripts/component.js"></script>
     <script src="scripts/mineField.js"></script>
-    <script src="scripts/difficultyTypes.js"></script>
+    <script src="scripts/modalWindow.js"></script>
     <script src="scripts/page.js"></script>
     
     <script src="scripts/cellTypes.js"></script>

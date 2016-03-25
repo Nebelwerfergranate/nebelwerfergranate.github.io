@@ -1,13 +1,14 @@
-"use strict";
-
 class Page {
     constructor(options) {
         this._el = options.element;
-        this._bombsRemainField = document.getElementById('js-bombsRemain');
-       // this._bombProbability = document.getElementById('js-bombProbabilityField').value;
+        this._bombsRemainBlock = this._el.querySelector('[data-selector="bombsRemain"]');
+        this._bombsQuantityInput = this._el.querySelector('[data-selector="bombsQuantity"]');
 
         this._mineField = new MineField({
             element: this._el.querySelector('[data-component="mineField"]')
+        });
+        this._modalWindow = new ModalWindow({
+            element: document.querySelector('[data-component="modalWindow"]')
         });
 
         //this._addDifficultyButtonsHandlers();
@@ -15,16 +16,17 @@ class Page {
         this._mineField.on('flagToggled', this._onFlagToggled.bind(this));
         this._mineField.on('onGameOver', this._onGameOver.bind(this));
 
-        this._bombsRemainField.innerHTML = this._mineField.bombsRemain;
+        this._bombsRemainBlock.innerHTML = this._mineField.bombsRemain;
     }
 
     _onFlagToggled(event) {
-        this._bombsRemainField.innerHTML = event.detail;
+        this._bombsRemainBlock.innerHTML = event.detail;
     }
 
     _onGameOver(event) {
         // detail.header;
-        alert(event.detail.message);
+        this._modalWindow.showMessage(event.detail);
+        //alert(event.detail);
     }
 
     // _addDifficultyButtonsHandlers() {

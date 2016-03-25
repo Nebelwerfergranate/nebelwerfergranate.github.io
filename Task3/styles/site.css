@@ -25,7 +25,6 @@ div.container{
 	margin: auto;
 	padding: 0 0 40px 0;
 	background-color: #9240D5;
-	text-align: center;
 }
 div.footer{
 	height: 100px; width: 960px;
@@ -39,7 +38,7 @@ div.item_container{
 	width: 100px;
 	height: 50px;
 	background-color: #582781;
-	text-align: right;
+	text-align: center;
 	color:#fff;
 	border: 1px solid #3F046F;
 }
@@ -110,8 +109,11 @@ button.death{
 /*==============================================================================
 		Minefield cells
 ===============================================================================*/
+div.mine-field-container{
+	text-align: center;	
+}
+
 div.mine-field{
-	clear:both;
 	overflow: hidden;
 	display: inline-block;
 	height: auto;
@@ -201,7 +203,9 @@ div.masage-body p{
 	display: none;
 }
 
-
+.clear{
+	clear: both;
+}
 
 
 

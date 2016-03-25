@@ -1,14 +1,12 @@
-"use strict";
-
 class MineField extends Component {
     constructor(options) {
         super(options);
 
         this._template = document.getElementById('mineField-template').innerHTML;
         this._model = new Minesweeper({
-            width: 16,
-            height: 16,
-            bombProbability: 30
+            width: 9,
+            height: 9,
+            bombProbability: 15
         });
         this._numberOfBombs = this._model.numberOfBombs;
 
@@ -17,15 +15,15 @@ class MineField extends Component {
 
         this._renderCells();
     }
-    
-    newGame(options){
+
+    newGame(options) {
         this._model.height = options.height;
         this._model.width = options.width;
         this._model.bombProbability = options.bombProbability;
-        
+
         this._model.reset();
         this._numberOfBombs = this._model.numberOfBombs;
-        
+
         this._renderCells();
     }
 
@@ -48,7 +46,7 @@ class MineField extends Component {
     _onclickHandler(event) {
         var cellEl = event.target.closest('[data-selector="cell"]');
 
-        if (cellEl == null || !cellEl.classList.contains("js-undiscovered")) {
+        if (cellEl == null || !cellEl.classList.contains("js-undiscovered") || cellEl.classList.contains("js-flag")) {
             return;
         }
 
@@ -64,14 +62,20 @@ class MineField extends Component {
             }
 
             cellEl.classList.add("js-explosion");
-            this._showMessage("You lose!");
+            this._showMessage({
+                header: "You lose!",
+                message: "You may try again..."
+            });
         }
         else {
             cellEl.classList.remove("js-undiscovered");
 
             var numberOfUndiscovered = document.querySelectorAll("div.js-undiscovered").length;
             if (numberOfUndiscovered <= this._model.numberOfBombs) {
-                this._showMessage("You win!");
+                this._showMessage({
+                    header: "You win!!!",
+                    message: "Congratulations!"
+                });
             }
         }
 
@@ -102,11 +106,7 @@ class MineField extends Component {
         }
     }
 
-    _showMessage(msg) {
-        this._trigger('onGameOver', {
-            header: "Notification",
-            message: msg
-        });
-        //alert(msg);
+    _showMessage(options) {
+        this._trigger('onGameOver', options);
     }
 }

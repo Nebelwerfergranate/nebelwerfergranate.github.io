@@ -1,5 +1,3 @@
-"use strict";
-
 class Minesweeper {
     constructor(options) {
         this.height = options.height;
