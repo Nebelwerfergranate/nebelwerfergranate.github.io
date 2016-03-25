@@ -43,6 +43,15 @@ class Minesweeper {
     getCellXY(xPos, yPos){
         return this.mineField[yPos][xPos];
     }
+    
+    reset(){
+        this.mineField = [];
+        this.numberOfBombs = 0;
+
+        this._checkModelState();
+        this._generateMineField();
+        this._calculateBombs();
+    }
 
     _checkModelState() {
         if (isNaN(this.height) || this.height <= 0) {
@@ -99,14 +108,20 @@ class Minesweeper {
         let neighbors = this.getNeighborCellsCoords(xPos, yPos);
         let bombs = 0;
 
-        neighbors.map(function(cell) {
-
-            if (this.mineField[cell.xPos][cell.yPos].cellType === cellTypes.bombCell) {
+        for(let i = 0; i < neighbors.length; i++){
+            if (this.mineField[neighbors[i].yPos][neighbors[i].xPos].cellType === cellTypes.bombCell) {
                 bombs++;
             }
-        }, this);
+        }
+        // neighbors.map(function(cell) {
 
-        this.mineField[xPos][yPos].bombsAround = bombs;
+        //     if (this.mineField[cell.yPos][cell.xPos].cellType === cellTypes.bombCell) {
+        //         bombs++;
+        //     }
+        // }, this);
+
+        //this.mineField[xPos][yPos].bombsAround = bombs;
+        this.mineField[yPos][xPos].bombsAround = bombs;
     }
 
 

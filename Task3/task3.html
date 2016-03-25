@@ -8,8 +8,45 @@
 </head>
 
 <body>
-    <div id="text"></div>
-    <div id="mineField"></div>
+    <div class="bg-box" data-component="page">
+		<div class="header">
+			<h1>Minesweeper</h1>
+		</div>
+		
+		<div class="container">
+			<!--<div class="item_container">-->
+			<!--	<h4>00:00</h4>-->
+			<!--</div>-->
+			<!--<div>-->
+			<!--	<button id="face" class="death"></button>-->
+			<!--</div>-->
+			
+			<div class="item_container">
+				<h4 id="js-bombsRemain">1</h4>
+    		</div>
+    		
+    		<div class="options">
+    			<!--<div class="level">-->
+    			<!--	<button id="js-rookieBtn">Rookie</button>-->
+    			<!--	<button id="js-veteranBtn">Veteran </button>-->
+    			<!--	<button id="js-expertBtn">Expert</button>-->
+    			<!--</div>-->
+    			<!--<div class="bombs-quantity">-->
+    			<!--	<h3>Bombs amount</h3>-->
+    			<!--	<span>-</span>-->
+    			<!--	<input id="js-bombProbabilityField" type="range" min="20" max="70" step="1" value="30"> -->
+    			<!--	<span>+</span>-->
+    			<!--</div>-->
+    		</div>
+    		
+    		<div class="mine-field" data-component="mineField"></div>
+		</div>
+		
+		<div class="footer"></div>
+	</div>
+    
+    
+    <div id="modal" class="modal-window js-hidden" data-component="modal-window"></div>
 
     <script type="text/template" id="mineField-template">
         <% for (let y = 0; y < height; y++) { %>
@@ -17,15 +54,25 @@
             <% for (let x = 0; x < width; x++) { %>
                     <div class="cell js-undiscovered <%-mineField[y][x].cellType === cellTypes.bombCell ? 'js-bomb' : ''%>"
                         data-pos-x="<%-x%>" data-pos-y="<%-y%>" data-selector="cell">
-                        <%- mineField[y][x].bombsAround %>
+                        <%- mineField[y][x].bombsAround === 0? "" :  mineField[y][x].bombsAround %>
                     </div>
             <% } %>
             </div>
         <% } %>
     </script>
+    
+    <script type="text/template" id="modal-template">
+		<h3 class="modal-header"><%- header %></h3>
+		<p class="modal-body"><%- message %></p>
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 
+    <script src="scripts/component.js"></script>
+    <script src="scripts/mineField.js"></script>
+    <script src="scripts/difficultyTypes.js"></script>
+    <script src="scripts/page.js"></script>
+    
     <script src="scripts/cellTypes.js"></script>
     <script src="scripts/minesweeper.js"></script>
     <script src="scripts/main.js"></script>
