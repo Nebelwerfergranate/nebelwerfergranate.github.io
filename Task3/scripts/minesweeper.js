@@ -1,12 +1,11 @@
 class Minesweeper {
-    constructor(options) {
+    constructor() {
         this.height = 0;
         this.width = 0;
         this.bombProbability = 0;
 
         this.mineField = [];
         this.numberOfBombs = 0;
-        this.startNewGame(options);
     }
 
     startNewGame(options) {

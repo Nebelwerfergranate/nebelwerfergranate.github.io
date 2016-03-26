@@ -3,17 +3,10 @@ class MineField extends Component {
         super(options);
 
         this._template = document.getElementById('mineField-template').innerHTML;
-        this._model = new Minesweeper({
-            width: 10,
-            height: 10,
-            bombProbability: 15
-        });
-        this._numberOfBombs = this._model.numberOfBombs;
+        this._model = new Minesweeper();
 
         this._el.addEventListener("click", this._onclickHandler.bind(this));
         this._el.oncontextmenu = this._oncontextmenuHandler.bind(this);
-
-        this._renderCells();
     }
     
 
@@ -29,6 +22,8 @@ class MineField extends Component {
         this._numberOfBombs = this._model.numberOfBombs;
 
         this._renderCells();
+        
+        this._trigger('gameStarted');
     }
 
     _renderCells() {

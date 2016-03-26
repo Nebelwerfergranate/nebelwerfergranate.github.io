@@ -2,6 +2,7 @@ class Page extends Component {
     constructor(options) {
         super(options);
 
+        // Fields declaration
         this._mineFieldComponent = new MineField({
             element: this._el.querySelector('[data-component="mineField"]')
         });
@@ -14,12 +15,18 @@ class Page extends Component {
         this._bombsQuantityInput = this._el.querySelector('[data-selector="bombsQuantity"]');
         this._iconButton = this._el.querySelector('[data-selector="icon"]');
 
+
+        // Constructor code 
+        this._mineFieldComponent.on('gameStarted', this._onGameStarted.bind(this));
         this._mineFieldComponent.on('flagToggled', this._onFlagToggled.bind(this));
         this._mineFieldComponent.on('onGameOver', this._onGameOver.bind(this));
         this._difficultyLevelsBlock.addEventListener('click', this._onDifficultyLevelClickHandler.bind(this));
         this._iconButton.addEventListener("click", this._onIconClickHandler.bind(this));
 
-        this._initializePage();
+        var options = difficultyLevels.rookie;
+        options.bombProbability = this._bombsQuantityInput.value;
+        this._mineFieldComponent.startNewGame(options);
+        this._makeIconButtonActiveByDataSelector("rookieButton");
     }
 
     _initializePage() {
@@ -29,6 +36,10 @@ class Page extends Component {
 
     _onFlagToggled(event) {
         this._bombsRemainBlock.innerHTML = event.detail;
+    }
+    
+    _onGameStarted(){
+        this._initializePage();
     }
 
     _onGameOver(event) {
@@ -82,12 +93,10 @@ class Page extends Component {
 
         options.bombProbability = this._bombsQuantityInput.value;
         this._mineFieldComponent.startNewGame(options);
-        this._initializePage();
     }
 
     _onIconClickHandler() {
         this._mineFieldComponent.startNewGame();
-        this._initializePage();
     }
 
     _setIconClass(className) {
@@ -102,11 +111,11 @@ class Page extends Component {
         var rookieButton = this._el.querySelector('[data-selector="rookieButton"]');
         var veteranButton = this._el.querySelector('[data-selector="veteranButton"]');
         var expertButton = this._el.querySelector('[data-selector="expertButton"]');
-        
+
         rookieButton.classList.remove("js-active");
         veteranButton.classList.remove("js-active");
         expertButton.classList.remove("js-active");
-        
+
         var activeButton = this._el.querySelector('[data-selector="' + dataSelector + '"]');
         activeButton.classList.add("js-active");
     }
