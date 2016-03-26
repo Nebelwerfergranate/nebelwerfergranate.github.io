@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="styles/site.css">
+</head>
+
+<body>
+    <div class="bg-box" data-component="page">
+		<div class="header">
+			<h1>Minesweeper</h1>
+		</div>
+		
+		<div class="container">
+			<div class="item_container" data-component="clockComponent"></div>
+			
+			<div>
+				<button data-selector="icon"></button>
+			</div>
+			
+			<div class="item_container">
+				<h4 data-selector="bombsRemain"></h4>
+    		</div>
+    		
+    		<div class="options">
+    			<div class="level" data-selector="difficultyLevels">
+    				<button type="button" data-selector="rookieButton">Rookie</button>
+    				<button type="button" data-selector="veteranButton">Veteran </button>
+    				<button type="button" data-selector="expertButton">Expert</button>
+    			</div>
+    			
+    			<div class="bombs-quantity">
+    				<h3>Bombs quantity</h3>
+    				<span>-</span>
+    				<input data-selector="bombsQuantity" type="range" min="5" max="30" step="1" value="17"> 
+    				<span>+</span>
+    				<div class="clear"></div>
+    			</div>
+    		</div>
+    		
+    		<div class="mine-field-container">
+    		    <div class="mine-field" data-component="mineField"></div>
+    		</div>
+    		
+		</div>
+		
+		<div class="footer"></div>
+	</div>
+    
+    
+    <div id="modal" class="modal-window js-hidden" data-component="modalWindow"></div>
+
+    <script type="text/template" id="mineField-template">
+        <% for (let y = 0; y < height; y++) { %>
+            <div class="row">
+            <% for (let x = 0; x < width; x++) { %>
+                    <div class="cell js-undiscovered <%-mineField[y][x].cellType === cellTypes.bombCell ? 'js-bomb' : ''%>"
+                        data-pos-x="<%-x%>" data-pos-y="<%-y%>" data-selector="cell">
+                            <span>
+                                <%- mineField[y][x].bombsAround === 0? "" :  mineField[y][x].bombsAround %>
+                            </span>
+                    </div>
+            <% } %>
+            </div>
+        <% } %>
+    </script>
+    
+    <script type="text/template" id="modal-template">
+		<h3 class="modal-header"><%- header %></h3>
+		<p class="modal-body"><%- message %></p>
+    </script>
+    
+    <script type="text/template" id="timer-template">
+        <h4 data-selector="time"></h4>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/mineField.js"></script>
+    <script src="scripts/components/modalWindow.js"></script>
+    <script src="scripts/components/timer.js"></script>
+    
+    <script src="scripts/enums/difficultyLevelConfig.js"></script>
+    <script src="scripts/enums/resultTypes.js"></script>
+    <script src="scripts/components/page.js"></script>
+    
+    <script src="scripts/enums/cellTypes.js"></script>
+    <script src="scripts/models/minesweeper.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
