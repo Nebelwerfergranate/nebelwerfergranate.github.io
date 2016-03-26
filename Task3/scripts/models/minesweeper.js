@@ -69,7 +69,7 @@ class Minesweeper {
         if (isNaN(this.width) || this.width <= 0) {
             throw new Error("width value " + this.width + " is incorrect");
         }
-        if (isNaN(this.bombProbability) || this.bombProbability < 0 || this.bombProbability > 100) {
+        if (isNaN(this.bombProbability) || this.bombProbability <= 0 || this.bombProbability > 100) {
             throw new Error(
                 "bombProbability value " + this.bombProbability +
                 " is incorrect. It must be between 0 and 100"
