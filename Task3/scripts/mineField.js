@@ -4,8 +4,8 @@ class MineField extends Component {
 
         this._template = document.getElementById('mineField-template').innerHTML;
         this._model = new Minesweeper({
-            width: 9,
-            height: 9,
+            width: 10,
+            height: 10,
             bombProbability: 15
         });
         this._numberOfBombs = this._model.numberOfBombs;
@@ -15,22 +15,20 @@ class MineField extends Component {
 
         this._renderCells();
     }
+    
 
-    newGame(options) {
-        this._model.height = options.height;
-        this._model.width = options.width;
-        this._model.bombProbability = options.bombProbability;
+    //Properties
+    get bombsRemain() {
+        return this._numberOfBombs - document.querySelectorAll(".js-flag").length;
+    }
+    
 
-        this._model.reset();
+    // Methods
+    startNewGame(options) {
+        this._model.startNewGame(options);
         this._numberOfBombs = this._model.numberOfBombs;
 
         this._renderCells();
-    }
-
-
-    get bombsRemain() {
-
-        return this._numberOfBombs - document.querySelectorAll(".js-flag").length;
     }
 
     _renderCells() {
@@ -62,9 +60,8 @@ class MineField extends Component {
             }
 
             cellEl.classList.add("js-explosion");
-            this._showMessage({
-                header: "You lose!",
-                message: "You may try again..."
+            this._trigger('onGameOver', {
+                result: resultTypes.lose
             });
         }
         else {
@@ -72,9 +69,8 @@ class MineField extends Component {
 
             var numberOfUndiscovered = document.querySelectorAll("div.js-undiscovered").length;
             if (numberOfUndiscovered <= this._model.numberOfBombs) {
-                this._showMessage({
-                    header: "You win!!!",
-                    message: "Congratulations!"
+                this._trigger('onGameOver', {
+                    result: resultTypes.win
                 });
             }
         }
@@ -107,6 +103,6 @@ class MineField extends Component {
     }
 
     _showMessage(options) {
-        this._trigger('onGameOver', options);
+
     }
 }

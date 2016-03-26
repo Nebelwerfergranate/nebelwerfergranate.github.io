@@ -84,21 +84,21 @@ div.bombs-quantity span{
 /*================================================================================
 		Icons
 ===============================================================================*/
-button.normal{
+button.js-normal{
 	float: left;
 	width: 70px;
 	height: 67px;
 	margin: 52px 70px 0 141px;
 	background: url(../images/face.png) #582781 no-repeat scroll 1px -66px;
 }
-button.success{
+button.js-success{
 	float: left;
 	width: 70px;
 	height: 67px;
 	margin: 52px 70px 0 141px;
 	background: url(../images/face.png) #582781 no-repeat scroll 1px -130px;
 }
-button.death{
+button.js-death{
 	float: left;
 	width: 70px;
 	height: 67px;
@@ -184,6 +184,7 @@ div.modal-window{
 	border-width: 2px 4px 4px 2px;
 	border-color: #000;
 	text-align: center;
+	color:white;
 }
 
 div.masage-header h3{
@@ -206,44 +207,3 @@ div.masage-body p{
 .clear{
 	clear: both;
 }
-
-
-
-/*#mineField .cell {
-    cursor: pointer;
-    text-align: center;
-    float: left;
-    width: 20px;
-    height: 20px;
-    border: 1px solid lightgray;
-    background-color: lightgray;
-}
-
-
-
-#mineField .js-bomb {
-    background-color: red;
-    color: red;
-    border-radius: 4px;
-}
-
-#mineField .js-undiscovered {
-    background-color: white;
-    color: white;
-    border: 1px solid gray;
-    border-radius: 4px;
-}
-
-#mineField .js-flag {
-    background-color: green;
-    color: green;
-}
-
-#text {
-    width: 100%;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 4px;
-}*/
-
-

@@ -1,8 +1,20 @@
 class Minesweeper {
     constructor(options) {
-        this.height = options.height;
-        this.width = options.width;
-        this.bombProbability = options.bombProbability;
+        this.height = 0;
+        this.width = 0;
+        this.bombProbability = 0;
+
+        this.mineField = [];
+        this.numberOfBombs = 0;
+        this.startNewGame(options);
+    }
+
+    startNewGame(options) {
+        if (options != null) {
+            this.height = options.height;
+            this.width = options.width;
+            this.bombProbability = options.bombProbability;
+        }
 
         this.mineField = [];
         this.numberOfBombs = 0;
@@ -17,15 +29,15 @@ class Minesweeper {
         const CELLS_COUNT = 9;
 
         for (let i = 0; i < CELLS_COUNT; i++) {
-            if (i === 4){
+            if (i === 4) {
                 continue; // dont't return target cell's coords.
             }
-            
+
             let x = xPos + i % 3 - 1;
             let y = yPos + Math.floor(i / 3) - 1;
 
 
-            if (this.getCellXY(x,y) == null) {
+            if (this.getCellXY(x, y) == null) {
                 continue;
             }
 
@@ -34,24 +46,15 @@ class Minesweeper {
                 yPos: y
             });
         }
-        
+
         return neighbors;
     }
-    
-    getCellXY(xPos, yPos){
-        if(this.mineField[yPos] == null || this.mineField[yPos][xPos] == null){
+
+    getCellXY(xPos, yPos) {
+        if (this.mineField[yPos] == null || this.mineField[yPos][xPos] == null) {
             return null;
         }
         return this.mineField[yPos][xPos];
-    }
-    
-    reset(){
-        this.mineField = [];
-        this.numberOfBombs = 0;
-
-        this._checkModelState();
-        this._generateMineField();
-        this._calculateBombs();
     }
 
     _checkModelState() {
@@ -110,9 +113,9 @@ class Minesweeper {
         let neighbors = this.getNeighborCellsCoords(xPos, yPos);
         let bombs = 0;
 
-        for(let i = 0; i < neighbors.length; i++){
+        for (let i = 0; i < neighbors.length; i++) {
 
-            if(this.getCellXY(neighbors[i].xPos, neighbors[i].yPos).cellType === cellTypes.bombCell) {
+            if (this.getCellXY(neighbors[i].xPos, neighbors[i].yPos).cellType === cellTypes.bombCell) {
                 bombs++;
             }
         }
