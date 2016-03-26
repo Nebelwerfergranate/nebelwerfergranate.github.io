@@ -58,7 +58,9 @@
             <% for (let x = 0; x < width; x++) { %>
                     <div class="cell js-undiscovered <%-mineField[y][x].cellType === cellTypes.bombCell ? 'js-bomb' : ''%>"
                         data-pos-x="<%-x%>" data-pos-y="<%-y%>" data-selector="cell">
-                        <%- mineField[y][x].bombsAround === 0? "" :  mineField[y][x].bombsAround %>
+                            <span>
+                                <%- mineField[y][x].bombsAround === 0? "" :  mineField[y][x].bombsAround %>
+                            </span>
                     </div>
             <% } %>
             </div>
@@ -76,17 +78,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 
-    <script src="scripts/component.js"></script>
-    <script src="scripts/mineField.js"></script>
-    <script src="scripts/modalWindow.js"></script>
-    <script src="scripts/timer.js"></script>
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/mineField.js"></script>
+    <script src="scripts/components/modalWindow.js"></script>
+    <script src="scripts/components/timer.js"></script>
     
-    <script src="scripts/difficultyLevelConfig.js"></script>
-    <script src="scripts/resultTypes.js"></script>
-    <script src="scripts/page.js"></script>
+    <script src="scripts/enums/difficultyLevelConfig.js"></script>
+    <script src="scripts/enums/resultTypes.js"></script>
+    <script src="scripts/components/page.js"></script>
     
-    <script src="scripts/cellTypes.js"></script>
-    <script src="scripts/minesweeper.js"></script>
+    <script src="scripts/enums/cellTypes.js"></script>
+    <script src="scripts/models/minesweeper.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 

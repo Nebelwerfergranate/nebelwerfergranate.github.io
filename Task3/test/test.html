@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Minesweeper Test</title>
+
+    <!-- installing mocha -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd'); // configure Mocha for BDD-test
+    </script>
+
+    <!-- installing chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        var assert = chai.assert; // set assert into the global scope
+    </script>
+</head>
+
+<body>
+    <!-- test results container -->
+    <div id="mocha"></div>
+
+    <!--<script src="../scripts/utils.js"></script>-->
+    <!--<script src="../scripts/operationTypes.js"></script>-->
+    <!--<script src="../scripts/calculator.js"></script>-->
+
+    <!--<script src="calculatorTest.js"></script>-->
+    <script src="test.js"></script>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>

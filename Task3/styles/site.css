@@ -158,6 +158,10 @@ div.js-undiscovered{
 	background-image: none;
 }
 
+div.js-undiscovered span{
+	display: none;
+}
+
 div.js-flag{
 	float: left;
 	padding-left: 5px;
