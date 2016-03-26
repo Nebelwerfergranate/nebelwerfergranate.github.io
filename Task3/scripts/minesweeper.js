@@ -10,9 +10,15 @@ class Minesweeper {
 
     startNewGame(options) {
         if (options != null) {
-            this.height = options.height;
-            this.width = options.width;
-            this.bombProbability = options.bombProbability;
+
+            if (options.height != null && options.width != null) {
+                this.height = options.height;
+                this.width = options.width;
+            }
+            
+            if(options.bombProbability != null){
+                this.bombProbability = options.bombProbability;
+            }
         }
 
         this.mineField = [];
@@ -95,7 +101,6 @@ class Minesweeper {
     }
 
     _checkBombIsRequired() {
-        //return Math.random() * this.height * this.width < this.bombProbability;
         return Math.random() * 100 <= this.bombProbability;
     }
 
@@ -121,6 +126,4 @@ class Minesweeper {
 
         this.mineField[yPos][xPos].bombsAround = bombs;
     }
-
-
 }

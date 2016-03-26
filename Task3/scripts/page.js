@@ -9,6 +9,9 @@ class Page extends Component {
         this._modalWindowComponent = new ModalWindow({
             element: document.querySelector('[data-component="modalWindow"]')
         });
+        this._timerComponent = new Timer({
+            element: this._el.querySelector('[data-component="clockComponent"]')
+        });
 
         this._bombsRemainBlock = this._el.querySelector('[data-selector="bombsRemain"]');
         this._difficultyLevelsBlock = this._el.querySelector('[data-selector="difficultyLevels"]');
@@ -32,6 +35,7 @@ class Page extends Component {
     _initializePage() {
         this._bombsRemainBlock.innerHTML = this._mineFieldComponent.bombsRemain;
         this._setIconClass("js-normal");
+        this._timerComponent.resetTimer();
     }
 
     _onFlagToggled(event) {
@@ -61,6 +65,8 @@ class Page extends Component {
                 this._setIconClass("js-death");
                 break;
         }
+        
+        this._timerComponent.stopTimer();
     }
 
     _onDifficultyLevelClickHandler(event) {
@@ -96,7 +102,10 @@ class Page extends Component {
     }
 
     _onIconClickHandler() {
-        this._mineFieldComponent.startNewGame();
+        var options = {
+            bombProbability: this._bombsQuantityInput.value
+        }
+        this._mineFieldComponent.startNewGame(options);
     }
 
     _setIconClass(className) {

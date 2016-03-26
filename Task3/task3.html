@@ -14,9 +14,8 @@
 		</div>
 		
 		<div class="container">
-			<!--<div class="item_container">-->
-			<!--	<h4>00:00</h4>-->
-			<!--</div>-->
+			<div class="item_container" data-component="clockComponent"></div>
+			
 			<div>
 				<button data-selector="icon"></button>
 			</div>
@@ -70,12 +69,17 @@
 		<h3 class="modal-header"><%- header %></h3>
 		<p class="modal-body"><%- message %></p>
     </script>
+    
+    <script type="text/template" id="timer-template">
+        <h4 data-selector="time"></h4>
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 
     <script src="scripts/component.js"></script>
     <script src="scripts/mineField.js"></script>
     <script src="scripts/modalWindow.js"></script>
+    <script src="scripts/timer.js"></script>
     
     <script src="scripts/difficultyLevelConfig.js"></script>
     <script src="scripts/resultTypes.js"></script>

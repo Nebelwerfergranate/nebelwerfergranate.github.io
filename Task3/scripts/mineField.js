@@ -8,13 +8,13 @@ class MineField extends Component {
         this._el.addEventListener("click", this._onclickHandler.bind(this));
         this._el.oncontextmenu = this._oncontextmenuHandler.bind(this);
     }
-    
+
 
     //Properties
     get bombsRemain() {
         return this._numberOfBombs - document.querySelectorAll(".js-flag").length;
     }
-    
+
 
     // Methods
     startNewGame(options) {
@@ -22,14 +22,12 @@ class MineField extends Component {
         this._numberOfBombs = this._model.numberOfBombs;
 
         this._renderCells();
-        
+
         this._trigger('gameStarted');
     }
 
     _renderCells() {
-        var template = document.getElementById('mineField-template').innerHTML;
-
-        this._el.innerHTML = _.template(template)({
+        this._el.innerHTML = _.template(this._template)({
             height: this._model.height,
             width: this._model.width,
             mineField: this._model.mineField,
@@ -39,7 +37,7 @@ class MineField extends Component {
     _onclickHandler(event) {
         var cellEl = event.target.closest('[data-selector="cell"]');
 
-        if (cellEl == null || !cellEl.classList.contains("js-undiscovered") || cellEl.classList.contains("js-flag")) {
+        if (this._checkOnClickHandlerNotRequired(cellEl)) {
             return;
         }
 
@@ -47,37 +45,14 @@ class MineField extends Component {
         var yPos = parseInt(cellEl.getAttribute("data-pos-y"));
 
         if (cellEl.classList.contains("js-bomb")) {
-            var cellsArr = document.querySelectorAll('[data-selector="cell"]');
-            var count = cellsArr.length;
-
-            for (let i = 0; i < count; i++) {
-                cellsArr[i].classList.remove("js-undiscovered");
-            }
-
-            cellEl.classList.add("js-explosion");
-            this._trigger('onGameOver', {
-                result: resultTypes.lose
-            });
+            this._bombCellHandler(cellEl);
         }
         else {
-            cellEl.classList.remove("js-undiscovered");
-
-            var numberOfUndiscovered = document.querySelectorAll("div.js-undiscovered").length;
-            if (numberOfUndiscovered <= this._model.numberOfBombs) {
-                this._trigger('onGameOver', {
-                    result: resultTypes.win
-                });
-            }
+            this._emptyCellHandler(cellEl);
         }
 
         if (this._model.getCellXY(xPos, yPos).bombsAround === 0) {
-            var neighbors = this._model.getNeighborCellsCoords(xPos, yPos);
-
-            neighbors.map(function(item) {
-                var query = '[data-pos-x="' + item.xPos + '"][data-pos-y="' + item.yPos + '"]';
-                var cell = document.querySelector(query);
-                cell.click();
-            });
+            this._openNearCells(xPos, yPos);
         }
     }
 
@@ -96,8 +71,43 @@ class MineField extends Component {
             this._trigger('flagToggled', this.bombsRemain);
         }
     }
+    
+    _checkOnClickHandlerNotRequired(cellEl){
+        return cellEl == null || !cellEl.classList.contains("js-undiscovered") || cellEl.classList.contains("js-flag");
+    }
 
-    _showMessage(options) {
+    _bombCellHandler(cellEl) {
+        var cellsArr = document.querySelectorAll('[data-selector="cell"]');
+        var count = cellsArr.length;
 
+        for (let i = 0; i < count; i++) {
+            cellsArr[i].classList.remove("js-undiscovered");
+        }
+
+        cellEl.classList.add("js-explosion");
+        this._trigger('onGameOver', {
+            result: resultTypes.lose
+        });
+    }
+
+    _emptyCellHandler(cellEl) {
+        cellEl.classList.remove("js-undiscovered");
+
+        var numberOfUndiscovered = document.querySelectorAll("div.js-undiscovered").length;
+        if (numberOfUndiscovered <= this._model.numberOfBombs) {
+            this._trigger('onGameOver', {
+                result: resultTypes.win
+            });
+        }
+    }
+
+    _openNearCells(xPos, yPos) {
+        var neighbors = this._model.getNeighborCellsCoords(xPos, yPos);
+
+        neighbors.map(function(item) {
+            var query = '[data-pos-x="' + item.xPos + '"][data-pos-y="' + item.yPos + '"]';
+            var cell = document.querySelector(query);
+            cell.click();
+        });
     }
 }

@@ -3,6 +3,10 @@
 	margin: 0;
 }
 
+button, input[type="range"]{
+	cursor: pointer;
+}
+
 div.bg-box{
 	width: 100%;
 	height: auto;
@@ -133,6 +137,7 @@ div.cell{
 	background-color:#9240D5;
 	height: 22px; width: 16px;
 	border: 1px solid white;
+	cursor: pointer;
 }
 
 div.js-bomb{ 
