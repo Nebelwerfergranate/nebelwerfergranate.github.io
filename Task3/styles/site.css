@@ -3,13 +3,17 @@
 	margin: 0;
 }
 
+button, input[type="range"]{
+	cursor: pointer;
+}
+
 div.bg-box{
 	width: 100%;
 	height: auto;
 	background-color: #3F046F;
 }
 div.header{
-	height: 100px; width: 900px;
+	height: 100px; width: 960px;
 	margin: auto;
 	background-color: #582781;
 	text-align: center;
@@ -21,13 +25,13 @@ div.header h1{
 }
 
 div.container{
-	height: auto; width: 900px;
+	height: auto; width: 960px;
 	margin: auto;
 	padding: 0 0 40px 0;
 	background-color: #9240D5;
 }
 div.footer{
-	height: 100px; width: 900px;
+	height: 100px; width: 960px;
 	margin: auto;
 	background: url(../images/icon-bomp.png) #582781 no-repeat scroll 0px -43px;
 }
@@ -38,7 +42,7 @@ div.item_container{
 	width: 100px;
 	height: 50px;
 	background-color: #582781;
-	text-align: right;
+	text-align: center;
 	color:#fff;
 	border: 1px solid #3F046F;
 }
@@ -84,21 +88,21 @@ div.bombs-quantity span{
 /*================================================================================
 		Icons
 ===============================================================================*/
-button.normal{
+button.js-normal{
 	float: left;
 	width: 70px;
 	height: 67px;
 	margin: 52px 70px 0 141px;
 	background: url(../images/face.png) #582781 no-repeat scroll 1px -66px;
 }
-button.success{
+button.js-success{
 	float: left;
 	width: 70px;
 	height: 67px;
 	margin: 52px 70px 0 141px;
 	background: url(../images/face.png) #582781 no-repeat scroll 1px -130px;
 }
-button.death{
+button.js-death{
 	float: left;
 	width: 70px;
 	height: 67px;
@@ -109,10 +113,13 @@ button.death{
 /*==============================================================================
 		Minefield cells
 ===============================================================================*/
+div.mine-field-container{
+	text-align: center;	
+}
+
 div.mine-field{
-	clear:both;
 	overflow: hidden;
-	width: auto;
+	display: inline-block;
 	height: auto;
 	margin: 0 58px 0 58px;
 	border: 2px solid #3F046F;
@@ -130,6 +137,7 @@ div.cell{
 	background-color:#9240D5;
 	height: 22px; width: 16px;
 	border: 1px solid white;
+	cursor: pointer;
 }
 
 div.js-bomb{ 
@@ -148,6 +156,10 @@ div.js-undiscovered{
 	border: 1px solid white;
 	color: transparent;
 	background-image: none;
+}
+
+div.js-undiscovered span{
+	display: none;
 }
 
 div.js-flag{
@@ -181,6 +193,7 @@ div.modal-window{
 	border-width: 2px 4px 4px 2px;
 	border-color: #000;
 	text-align: center;
+	color:white;
 }
 
 div.masage-header h3{
@@ -200,45 +213,6 @@ div.masage-body p{
 	display: none;
 }
 
-
-
-
-
-/*#mineField .cell {
-    cursor: pointer;
-    text-align: center;
-    float: left;
-    width: 20px;
-    height: 20px;
-    border: 1px solid lightgray;
-    background-color: lightgray;
+.clear{
+	clear: both;
 }
-
-
-
-#mineField .js-bomb {
-    background-color: red;
-    color: red;
-    border-radius: 4px;
-}
-
-#mineField .js-undiscovered {
-    background-color: white;
-    color: white;
-    border: 1px solid gray;
-    border-radius: 4px;
-}
-
-#mineField .js-flag {
-    background-color: green;
-    color: green;
-}
-
-#text {
-    width: 100%;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 4px;
-}*/
-
-
