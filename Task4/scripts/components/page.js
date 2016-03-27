@@ -16,6 +16,7 @@ class Page extends Component {
             return;
         }
 
+        event.dataTransfer.setData("message", "card"); // mozilla doesn't work without this property
         this._draggingElement = event.target;
 
         document.getElementById("test").innerHTML = "Let's drag!";
