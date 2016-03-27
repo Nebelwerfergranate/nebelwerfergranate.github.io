@@ -3,7 +3,9 @@ class Page extends Component {
         super(options);
 
         // Fields declaration
+        this._model = new FreeCellModel();
         this._draggingElement = null;
+        
 
         // Constructor code 
         this.on("dragstart", this._ondragstartHandler.bind(this));
