@@ -1,0 +1,22 @@
+.js-card{
+    width: 100px;
+    height: 200px;
+    float: left;
+    background-color: red;
+    margin: 0 -2px;
+    padding-top: 0px;
+    z-index: 2;
+    box-sizing: border-box;
+    border: 2px solid green;
+}
+
+.js-cell{
+    width: 120px;
+    height: 240px;
+    float: left;
+    background-color: blue;
+    margin: 0px 30px;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 10px;
+}

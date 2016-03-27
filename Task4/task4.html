@@ -9,10 +9,24 @@
 
 <body>
     
+    <div data-component="page">
+        <div id="test">Test</div>
+        
+        <div class="js-cell" data-selector="cell"></div>
+        <div class="js-cell" data-selector="cell"></div>
+        
+        <div class="js-card" draggable="true" data-selector="card">King</div>
+        <div class="js-card" draggable="true" data-selector="card">Knave</div>
+        <div class="js-card" draggable="true" data-selector="card">10</div>
+        <div class="js-card" draggable="true" data-selector="card">2</div>
+        <div class="js-card" draggable="true" data-selector="card">5</div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 
-
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/page.js"></script>
+    
     <script src="scripts/main.js"></script>
 </body>
 
