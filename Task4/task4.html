@@ -8,34 +8,64 @@
 </head>
 
 <body>
-    
+
     <div data-component="page">
         <div id="test">Test</div>
-        
-        <div class="js-cell" data-selector="cell"></div>
-        <div class="js-cell" data-selector="cell"></div>
-        
-        <div class="js-card" draggable="true" data-selector="card">King</div>
-        <div class="js-card" draggable="true" data-selector="card">Knave</div>
-        <div class="js-card" draggable="true" data-selector="card">10</div>
-        <div class="js-card" draggable="true" data-selector="card">2</div>
-        <div class="js-card" draggable="true" data-selector="card">5</div>
+
+        <div data-component="freeCell">
+            <div>
+                <div class="cardPlace js-cell" data-selector="cell" data-cell-type="cell" data-cell-number="0"></div>
+                <div class="cardPlace js-cell" data-selector="cell" data-cell-type="cell" data-cell-number="1"></div>
+                <div class="cardPlace js-cell" data-selector="cell" data-cell-type="cell" data-cell-number="2"></div>
+                <div class="cardPlace js-cell" data-selector="cell" data-cell-type="cell" data-cell-number="3"></div>
+                <!--<div class="clear"></div>-->
+            </div>
+
+            <div>
+                <div class="cardPlace js-foundation" data-selector="cell" data-cell-type="foundation" data-cell-number="0"></div>
+                <div class="cardPlace js-foundation" data-selector="cell" data-cell-type="foundation" data-cell-number="1"></div>
+                <div class="cardPlace js-foundation" data-selector="cell" data-cell-type="foundation" data-cell-number="2"></div>
+                <div class="cardPlace js-foundation" data-selector="cell" data-cell-type="foundation" data-cell-number="3"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="0"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="1"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="2"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="3"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="4"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="5"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="6"></div>
+                <div class="cardPlace js-cascade" data-selector="cell" data-cell-type="cascade" data-cell-number="7"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="js-card" draggable="true" data-selector="card">King</div>
+            <div class="js-card" draggable="true" data-selector="card">Knave</div>
+            <div class="js-card" draggable="true" data-selector="card">10</div>
+            <div class="js-card" draggable="true" data-selector="card">2</div>
+            <div class="js-card" draggable="true" data-selector="card">5</div>
+        </div>
+
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
-    
+
     <script src="scripts/enums/cardsColors.js"></script>
     <script src="scripts/enums/cardsRanks.js"></script>
     <script src="scripts/enums/cardsSuits.js"></script>
-    
+
     <script src="scripts/models/card.js"></script>
     <script src="scripts/models/freeCellModel.js"></script>
 
     <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/freeCellComponent.js"></script>
     <script src="scripts/components/page.js"></script>
-    
-    
-    
+
+
+
     <script src="scripts/main.js"></script>
 </body>
 
