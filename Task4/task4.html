@@ -4,52 +4,44 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>FreeCell</title>
-    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
 
-    <div data-component="page">
-        <div id="test">Test</div>
+<div id="wrapper" data-component="page">
+    <div data-component="freeCell">
+        <div id="wrappTop">
 
-        <div data-component="freeCell">
-            <div data-selector="cells">
-                <div class="cardPlace js-cell" data-selector="cardHolder" data-cell-type="cell" data-cell-number="0"></div>
-                <div class="cardPlace js-cell" data-selector="cardHolder" data-cell-type="cell" data-cell-number="1"></div>
-                <div class="cardPlace js-cell" data-selector="cardHolder" data-cell-type="cell" data-cell-number="2"></div>
-                <div class="cardPlace js-cell" data-selector="cardHolder" data-cell-type="cell" data-cell-number="3"></div>
-                <!--<div class="clear"></div>-->
+            <div id="freeCell" data-selector="cells">
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="0"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="1"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="2"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="3"></ul>
             </div>
 
-            <div>
-                <div class="cardPlace js-foundation" data-selector="cardHolder" data-cell-type="foundation" data-cell-number="0"></div>
-                <div class="cardPlace js-foundation" data-selector="cardHolder" data-cell-type="foundation" data-cell-number="1"></div>
-                <div class="cardPlace js-foundation" data-selector="cardHolder" data-cell-type="foundation" data-cell-number="2"></div>
-                <div class="cardPlace js-foundation" data-selector="cardHolder" data-cell-type="foundation" data-cell-number="3"></div>
-                <div class="clear"></div>
+            <div id="finalCell" data-selector="foundations">
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="0"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="1"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="2"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="3"></ul>
             </div>
 
-            <div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="0"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="1"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="2"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="3"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="4"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="5"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="6"></div>
-                <div class="cardPlace js-cascade" data-selector="cardHolder" data-cell-type="cascade" data-cell-number="7"></div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="js-card" draggable="true" data-selector="card">King</div>
-            <div class="js-card" draggable="true" data-selector="card">Knave</div>
-            <div class="js-card" draggable="true" data-selector="card">10</div>
-            <div class="js-card" draggable="true" data-selector="card">2</div>
-            <div class="js-card" draggable="true" data-selector="card">5</div>
         </div>
 
-
+        <div id="basicCell" data-selector="cascades">
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="7"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="6"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="5"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="4"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="3"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="2"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="1"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="0"></ul>
+        </div>
     </div>
+
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 
@@ -64,14 +56,13 @@
     <script src="scripts/components/freeCellComponent.js"></script>
     <script src="scripts/components/page.js"></script>
     
-    <script type="text/template" id="card-template">
-		<div class="js-card" draggable="true" data-selector="card" data-color="<%- color %>"
-		    data-suit="<%- suit %>" data-rank="<%- rank %>"><%- rank %></div>
-    </script>
-
-
-
     <script src="scripts/main.js"></script>
+    
+    <!-- templates -->
+    <script type="text/template" id="card-template">
+		<li class="js-card <%- cardClass %>" draggable="true" data-selector="card" data-color="<%- color %>"
+		    data-suit="<%- suit %>" data-rank="<%- rank %>"></li>
+    </script>
 </body>
 
 </html>

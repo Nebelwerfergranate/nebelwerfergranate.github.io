@@ -1,0 +1,138 @@
+@import url(reset.css);
+
+html,
+body{
+height: 100%;
+}
+
+
+html>body #wrapper {height: auto; min-height: 100%; }
+
+#wrapper{
+    height: 100%
+    -webkit-background-size: auto 100%;
+    -moz-background-size: auto 100%;
+    -o-background-size: auto 100%;
+    background-size: auto 100%;
+    
+    background: #10923a; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #10923a 0%, #075322 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #10923a 0%,#075322 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #10923a 0%,#075322 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#10923a', endColorstr='#075322',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+#wrappTop{
+    width: 1148px;
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+#freeCell, #finalCell{
+    width: 544px;
+    height: 179px;
+    float: left;
+}
+
+#freeCell{margin-right: 60px;}
+
+#basicCell{
+    width: 1088px;
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+#wrapper ul{
+    width: 110px;
+    height: 153px;
+    border: 3px solid #d6d6d6;
+    border-radius: 6px;
+    float: left;
+    margin: 20px 10px 0 10px;
+}
+
+#basicCell ul{
+    border-bottom: none;
+}
+
+
+li {
+    width: 106px;
+    height: 149px;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    background: url('../images/cards.jpg') no-repeat;
+    float: left;
+    margin-bottom: -110px;
+}
+
+#finalCell li {
+    margin-bottom: -153px;
+}
+
+/*---------- Пики ----------*/
+
+.spadesKing{background-position: -336px -157px;}
+.spadesQueen{background-position: -447px -157px;}
+.spadesJack{background-position: -557px -157px;}
+.spades10{background-position: -668px -157px;}
+.spades9{background-position: -778px -157px;}
+.spades8{background-position: -889px -157px;}
+.spades7{background-position: -4px -4px;}
+.spades6{background-position: -114px -4px;}
+.spades5{background-position: -225px -4px;}
+.spades4{background-position: -336px -4px;}
+.spades3{background-position: -447px -4px;}
+.spades2{background-position: -557px -4px;}
+.spadesAce{background-position: -668px -4px;}
+
+/*---------- Черви ----------*/
+
+.heartsKing{background-position: -889px -464px;}
+.heartsQueen{background-position: -4px -311px;}
+.heartsJack{background-position: -114px -311px;}
+.hearts10{background-position: -225px -311px;}
+.hearts9{background-position: -336px -311px;}
+.hearts8{background-position: -447px -311px;}
+.hearts7{background-position: -557px -311px;}
+.hearts6{background-position: -668px -311px;}
+.hearts5{background-position: -778px -311px;}
+.hearts4{background-position: -889px -311px;}
+.hearts3{background-position: -4px -157px;}
+.hearts2{background-position: -114px -157px;}
+.heartsAce{background-position: -225px -157px;}
+
+/*---------- Трефы ----------*/
+
+.clubsKing{background-position: -447px -618px;}
+.clubsQueen{background-position: -557px -618px;}
+.clubsJack{background-position: -668px -618px;}
+.clubs10{background-position: -778px -618px;}
+.clubs9{background-position: -889px -618px;}
+.clubs8{background-position: -4px -464px;}
+.clubs7{background-position: -114px -464px;}
+.clubs6{background-position: -225px -464px;}
+.clubs5{background-position: -336px -464px;}
+.clubs4{background-position: -447px -464px;}
+.clubs3{background-position: -557px -464px;}
+.clubs2{background-position: -668px -464px;}
+.clubsAce{background-position: -778px -464px;}
+
+/*---------- Бубны ----------*/
+
+.diamondsKing{background-position: -4px -771px;}
+.diamondsQueen{background-position: -114px -771px;}
+.diamondsJack{background-position: -225px -771px;}
+.diamonds10{background-position: -336px -771px;}
+.diamonds9{background-position: -447px -771px;}
+.diamonds8{background-position: -557px -771px;}
+.diamonds7{background-position: -668px -771px;}
+.diamonds6{background-position: -778px -771px;}
+.diamonds5{background-position: -889px -771px;}
+.diamonds4{background-position: -4px -618px;}
+.diamonds3{background-position: -114px -618px;}
+.diamonds2{background-position: -225px -618px;}
+.diamondsAce{background-position: -336px -618px;}
+

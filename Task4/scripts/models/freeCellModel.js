@@ -13,6 +13,31 @@ class FreeCellModel {
         this._fillDeck();
         this._shuffleDeck(this._deck);
         this._fillCascadesWithDeck();
+        
+        // test start
+        this._cells[0] = this._cascades[0][0];
+        this._cells[1] = this._cascades[0][1];
+        this._cells[2] = this._cascades[0][2];
+        this._cells[3] = this._cascades[0][3];
+        
+        this._foundations[0] = this._cascades[1][0];
+        this._foundations[1] = this._cascades[1][1];
+        this._foundations[2] = this._cascades[1][2];
+        this._foundations[3] = this._cascades[1][3];
+        
+         // test end
+    }
+    
+    get cascades(){
+        return this._cascades;
+    }
+    
+    get cells(){
+        return this._cells;
+    }
+    
+    get foundations(){
+        return this._foundations;
     }
 
     _fillDeck() {
