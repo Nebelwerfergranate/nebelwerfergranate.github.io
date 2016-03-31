@@ -1,8 +1,8 @@
 class Card {
     constructor(suit, rank) {
+        this.color = null;
         this.suit = suit;
         this.rank = rank;
-        this.color = null;
 
         this._setCardColor(suit);
 

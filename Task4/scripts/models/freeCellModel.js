@@ -3,9 +3,9 @@ class FreeCellModel {
         const FOUNDATIONS_LENGTH = 4;
         const CELLS_LENGTH = 4;
         const CASCADES_LENGTH = 8;
-        
+
         this._deck = [];
-        
+
         this._foundations = new Array(FOUNDATIONS_LENGTH);
         this._cells = new Array(CELLS_LENGTH);
         this._cascades = new Array(CASCADES_LENGTH);
@@ -23,13 +23,13 @@ class FreeCellModel {
             }
         }
     }
-    
-    _fillCascadesWithDeck(){
+
+    _fillCascadesWithDeck() {
         let count = this._deck.length;
-        for(let i = 0; i < count; i++){
-            
+        for (let i = 0; i < count; i++) {
+
             let index = i % this._cascades.length;
-            if(this._cascades[index] == null){
+            if (this._cascades[index] == null) {
                 this._cascades[index] = [];
             }
             this._cascades[index].push(this._deck.pop());

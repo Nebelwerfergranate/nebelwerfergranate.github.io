@@ -2,10 +2,14 @@ class FreeCellComponent extends Component{
     constructor(options){
         super(options);
         
+        this._testEl = document.getElementById("test");
         
         // Fields declaration
         this._model = new FreeCellModel();
         this._draggingElement = null;
+        this._sourceIndo = null;
+        this._destinationInfo = null;
+        this._cardTemplate = document.getElementById("card-template").innerHTML;
         
 
         // Constructor code 
@@ -16,14 +20,25 @@ class FreeCellComponent extends Component{
         console.dir(this._model._deck);
         console.dir(this._model._cascades);
         
+        var testCard = this._model._cascades[0][0];
+        this._testEl.innerHTML = _.template(this._cardTemplate)({
+            color: testCard.color,
+            suit: testCard.suit,
+            rank: testCard.rank
+        });
+        
+        
     }
         _ondragstartHandler(event) {
         if (event.target.getAttribute("data-selector") !== "card") {
             return;
         }
 
+        
         event.dataTransfer.setData("message", "card"); // mozilla doesn't work without this property
         this._draggingElement = event.target;
+        
+        this._setSourceInfoFromEvent();
 
         document.getElementById("test").innerHTML = "Let's drag!";
     }
@@ -38,8 +53,9 @@ class FreeCellComponent extends Component{
     _ondropHandler(event) {
         event.preventDefault();
         
-        var info = this._getCellInfoFromEvent(event);
-        alert(info.number + " " + info.type);
+        
+        this._setDestinationInfoFromEvent(event);
+        alert(this._destinationInfo);
         
         var card = this._draggingElement;
 
@@ -55,7 +71,7 @@ class FreeCellComponent extends Component{
         
         var attribute = event.target.getAttribute("data-selector");
         
-        if (attribute !== "card" && attribute !== "cell"){
+        if (attribute !== "card" && attribute !== "cardHolder"){
             return true;
         } 
         
@@ -85,17 +101,33 @@ class FreeCellComponent extends Component{
         return false;
     }
     
-    _getCellInfoFromEvent(event){
-        var cell = event.target.closest("[data-selector='cell']");
+    _setDestinationInfoFromEvent(event){
+        var cell = event.target.closest("[data-selector='cardHolder']");
         
         if(cell == null){
-            return null;
+            return;
         }
         
-        return {
+        this._destinationInfo = {
             type: cell.getAttribute("data-cell-type"),
             number: cell.getAttribute("data-cell-number")
         };
+        
+    }
+    
+    _setSourceInfoFromEvent(event){
+        var card = event.target.closest("[data-selector='card']");
+        
+        if(card == null){
+            return;
+        }
+        
+        this._sourceIndo = {
+            
+        };
+    }
+    
+    _renderCards(){
         
     }
     
