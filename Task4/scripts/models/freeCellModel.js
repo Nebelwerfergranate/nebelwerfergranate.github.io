@@ -14,18 +14,6 @@ class FreeCellModel {
         this._shuffleDeck(this._deck);
         this._fillCascadesWithDeck();
         
-        // test start
-        this._cells[0] = this._cascades[0][0];
-        this._cells[1] = this._cascades[0][1];
-        this._cells[2] = this._cascades[0][2];
-        this._cells[3] = this._cascades[0][3];
-        
-        this._foundations[0] = this._cascades[1][0];
-        this._foundations[1] = this._cascades[1][1];
-        this._foundations[2] = this._cascades[1][2];
-        this._foundations[3] = this._cascades[1][3];
-        
-         // test end
     }
     
     get cascades(){
@@ -38,6 +26,38 @@ class FreeCellModel {
     
     get foundations(){
         return this._foundations;
+    }
+    
+    checkSourceIsValid(sourceInfo){
+        var cellType = sourceInfo.cellType;
+        var cellNumber = sourceInfo.cellNumber;
+        var position = sourceInfo.position;
+        
+        if(cellType === cellsTypes.foundation){
+            return false;
+        }
+        else if(cellType === cellsTypes.cell){
+            return true;
+        }
+        else if(position === (this._cascades[cellNumber].length - 1)){
+            return true;
+        }
+        
+        var count = this._cascades[cellNumber].length - 1;
+        
+        for (let i = position; i < count; i++){
+            var upperCard = this._cascades[cellNumber][i];
+            var lowerCard = this._cascades[cellNumber][i + 1];
+            
+            if(lowerCard.color === upperCard.color){
+                return false;
+            }
+            else if((lowerCard.rank + 1) !== upperCard.rank){
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     _fillDeck() {

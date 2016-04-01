@@ -48,6 +48,7 @@
     <script src="scripts/enums/cardsColors.js"></script>
     <script src="scripts/enums/cardsRanks.js"></script>
     <script src="scripts/enums/cardsSuits.js"></script>
+    <script src="scripts/enums/cellsTypes.js"></script>
 
     <script src="scripts/models/card.js"></script>
     <script src="scripts/models/freeCellModel.js"></script>
@@ -60,8 +61,8 @@
     
     <!-- templates -->
     <script type="text/template" id="card-template">
-		<li class="js-card <%- cardClass %>" draggable="true" data-selector="card" data-color="<%- color %>"
-		    data-suit="<%- suit %>" data-rank="<%- rank %>"></li>
+		<li class="js-card <%- cardClass %>" draggable="true" data-selector="card" 
+		    data-position="<%- position %>"></li>
     </script>
 </body>
 

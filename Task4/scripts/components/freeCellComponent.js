@@ -24,18 +24,44 @@ class FreeCellComponent extends Component {
         this._renderCells();
         this._renderFoundations();
     }
+
     _ondragstartHandler(event) {
         if (event.target.getAttribute("data-selector") !== "card") {
             return;
         }
-
-
+        var card = event.target;
+        var cell = card.closest('[data-selector="cardHolder"]');
+        var cellTypeString = cell.getAttribute("data-cell-type");
+        var cellType = null;
+        
+        switch(cellTypeString){
+            case "cascade":
+                cellType = cellsTypes.cascade;
+                break;
+            case "cell":
+                cellType = cellsTypes.cell;
+                break;
+            case "foundation":
+                cellType: cellsTypes.foundation;
+                break;
+            default: throw new Error("cell type '" + cellTypeString +"' doesn't supported");
+        }
+        
+        var info = {
+            position: parseInt(card.getAttribute("data-position")),
+            cellType: cellType,
+            cellNumber: parseInt(cell.getAttribute("data-cell-number")) 
+        };
+        
+        if(!this._model.checkSourceIsValid(info)){
+            return;
+        }
+        
         event.dataTransfer.setData("message", "card"); // mozilla doesn't work without this property
+        //event.dataTransfer.setDragImage(new Image(), 0, 0); // removing default helper
         this._draggingElement = event.target;
-
-        this._setSourceInfoFromEvent();
-
-        document.getElementById("test").innerHTML = "Let's drag!";
+        
+        //this._setSourceInfoFromEvent();
     }
 
     _ondragoverHandler(event) {
@@ -135,55 +161,53 @@ class FreeCellComponent extends Component {
 
             for (let j = 0; j < cardsCount; j++) {
                 var card = cards[j];
-                var cardItem = this._createCardItem(card);
+                var cardItem = this._createCardItem(card, j);
                 cascade.innerHTML += cardItem;
             }
         }
     }
-    
-    _renderCells(){
+
+    _renderCells() {
         var cellsBlock = document.querySelector('[data-selector="cells"]');
         var cells = this._model.cells;
         var count = cells.length;
-        
-        for(let i = 0; i < count; i++){
+
+        for (let i = 0; i < count; i++) {
             var selector = '[data-cell-number="' + i + '"]';
             var cell = cellsBlock.querySelector(selector);
             var cardItem = this._createCardItem(cells[i]);
-            
+
             cell.innerHTML = cardItem;
         }
     }
-    
-    _renderFoundations(){
+
+    _renderFoundations() {
         var foundationsBlock = document.querySelector('[data-selector="foundations"]');
         var foundations = this._model.foundations;
         var count = foundations.length;
-        
-        for(let i = 0; i < count; i++){
+
+        for (let i = 0; i < count; i++) {
             var selector = '[data-cell-number="' + i + '"]';
             var foundation = foundationsBlock.querySelector(selector);
             var cardItem = this._createCardItem(foundations[i]);
-            
+
             foundation.innerHTML = cardItem;
         }
     }
 
-    _createCardItem(card) {
+    _createCardItem(card, position) {
         let cardItem = _.template(this._cardTemplate)({
-            color: card.color,
-            suit: card.suit,
-            rank: card.rank,
+            position: position,
             cardClass: this._getCardCssClass(card)
         });
-        
+
         return cardItem;
     }
-    
-    _getCardCssClass(card){
+
+    _getCardCssClass(card) {
         var className = "";
-        
-        switch (card.suit){
+
+        switch (card.suit) {
             case cardsSuits.spades:
                 className += "spades";
                 break;
@@ -196,7 +220,7 @@ class FreeCellComponent extends Component {
             case cardsSuits.clubs:
                 className += "clubs";
                 break;
-            default: 
+            default:
                 throw new Error("card suit '" + card.suit + "' doesn't supported");
         }
 
