@@ -3,7 +3,7 @@ class FreeCellComponent extends Component {
         super(options);
 
         // Fields declaration
-        this._model = new FreeCellModel();
+        this._model = new GameModel();
         
         this._view = new FreeCellView({
             cascades: this._model.cascades,
@@ -55,6 +55,7 @@ class FreeCellComponent extends Component {
         this._sourceInfo = info;
         
         if(!this._model.checkSourceIsValid(info)){
+            event.preventDefault();
             return;
         }
         
@@ -83,8 +84,6 @@ class FreeCellComponent extends Component {
 
         if (card != null) {
             event.target.appendChild(card);
-
-            document.getElementById("test").innerHTML = "Drop! :)";
         }
     }
 

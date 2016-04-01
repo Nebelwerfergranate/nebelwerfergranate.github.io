@@ -1,63 +1,40 @@
 class FreeCellModel {
     constructor() {
+        this._deck = null;
+
+        this._foundations = null;
+        this._cells = null;
+        this._cascades = null;
+
+        this.reset();
+    }
+
+    get cascades() {
+        return this._cascades;
+    }
+
+    get cells() {
+        return this._cells;
+    }
+
+    get foundations() {
+        return this._foundations;
+    }
+
+    reset() {
         const FOUNDATIONS_LENGTH = 4;
         const CELLS_LENGTH = 4;
         const CASCADES_LENGTH = 8;
 
         this._deck = [];
 
-        this._foundations = new Array(FOUNDATIONS_LENGTH);
-        this._cells = new Array(CELLS_LENGTH);
-        this._cascades = new Array(CASCADES_LENGTH);
+        this._foundations = new Array(FOUNDATIONS_LENGTH).fill(null);
+        this._cells = new Array(CELLS_LENGTH).fill(null);
+        this._cascades = new Array(CASCADES_LENGTH).fill(null);
 
         this._fillDeck();
         this._shuffleDeck(this._deck);
         this._fillCascadesWithDeck();
-        
-    }
-    
-    get cascades(){
-        return this._cascades;
-    }
-    
-    get cells(){
-        return this._cells;
-    }
-    
-    get foundations(){
-        return this._foundations;
-    }
-    
-    checkSourceIsValid(sourceInfo){
-        var cellType = sourceInfo.cellType;
-        var cellNumber = sourceInfo.cellNumber;
-        var position = sourceInfo.position;
-        
-        if(cellType === cellsTypes.foundation){
-            return false;
-        }
-        else if(cellType === cellsTypes.cell){
-            return true;
-        }
-        else if(position === (this._cascades[cellNumber].length - 1)){
-            return true;
-        }
-        
-        var count = this._cascades[cellNumber].length - 1;
-        
-        for (let i = position; i < count; i++){
-            var upperCard = this._cascades[cellNumber][i];
-            var lowerCard = this._cascades[cellNumber][i + 1];
-            
-            if(lowerCard.color === upperCard.color){
-                return false;
-            }
-            else if((lowerCard.rank + 1) !== upperCard.rank){
-                return false;
-            }
-        }
-        
-        return true;
     }
 
     _fillDeck() {
