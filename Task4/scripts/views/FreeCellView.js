@@ -1,13 +1,16 @@
 class FreeCellView {
-    constructor(options) {
+    constructor() {
         this._cardTemplate = document.getElementById("card-template").innerHTML;
+        this._cascades = null;
+        this._cells = null;
+        this._foundations = null;
+    }
+    
+    render(options){
         this._cascades = options.cascades;
         this._cells = options.cells;
         this._foundations = options.foundations;
         
-    }
-    
-    render(){
         this._renderCascades();
         this._renderCells();
         this._renderFoundations();
@@ -23,6 +26,7 @@ class FreeCellView {
             var cardsCount = cards.length;
             var selector = '[data-cell-number="' + i + '"]';
             var cascade = cascadesBlock.querySelector(selector);
+            cascade.innerHTML = "";
 
             for (let j = 0; j < cardsCount; j++) {
                 var card = cards[j];
@@ -43,7 +47,8 @@ class FreeCellView {
             var cardItem = this._createCardItem(cells[i]);
             
             if(cardItem == null){
-                return;
+                cell.innerHTML = "";
+                continue;
             }
 
             cell.innerHTML = cardItem;

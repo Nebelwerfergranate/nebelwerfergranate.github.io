@@ -32,9 +32,31 @@ class FreeCellModel {
         this._cells = new Array(CELLS_LENGTH).fill(null);
         this._cascades = new Array(CASCADES_LENGTH).fill(null);
 
+        for (let i = 0; i < FOUNDATIONS_LENGTH; i++) {
+            this._foundations[i] = [];
+        }
+
         this._fillDeck();
         this._shuffleDeck(this._deck);
         this._fillCascadesWithDeck();
+    }
+
+    getLastCardInFoundation(foundationNumber) {
+        var lastIndex = this.foundations[foundationNumber].length - 1;
+        if (lastIndex < 0) {
+            return null;
+        }
+
+        return this.foundations[foundationNumber][lastIndex];
+    }
+
+    getLastCardInCascade(cascadeNumber) {
+        var lastIndex = this.cascades[cascadeNumber].length - 1;
+        if (lastIndex < 0) {
+            return null;
+        }
+
+        return this.cascades[cascadeNumber][lastIndex];
     }
 
     _fillDeck() {
