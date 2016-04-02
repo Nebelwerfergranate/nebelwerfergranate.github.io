@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>FreeCell</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+<div id="wrapper" data-component="page">
+    <div data-component="freeCell">
+        <div id="wrappTop">
+
+            <div id="freeCell" data-selector="cells">
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="0"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="1"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="2"></ul>
+                <ul data-selector="cardHolder" data-cell-type="cell" data-cell-number="3"></ul>
+            </div>
+
+            <div id="finalCell" data-selector="foundations">
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="0"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="1"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="2"></ul>
+                <ul data-selector="cardHolder" data-cell-type="foundation" data-cell-number="3"></ul>
+            </div>
+
+        </div>
+
+        <div id="basicCell" data-selector="cascades">
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="7"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="6"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="5"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="4"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="3"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="2"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="1"></ul>
+            <ul data-selector="cardHolder" data-cell-type="cascade" data-cell-number="0"></ul>
+        </div>
+    </div>
+
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+    
+
+    <script src="scripts/enums/cardsColors.js"></script>
+    <script src="scripts/enums/cardsRanks.js"></script>
+    <script src="scripts/enums/cardsSuits.js"></script>
+    <script src="scripts/enums/cellsTypes.js"></script>
+
+    <script src="scripts/models/card.js"></script>
+    <script src="scripts/models/freeCellModel.js"></script>
+    <script src="scripts/models/gameModel.js"></script>
+    
+    <script src="scripts/views/FreeCellView.js"></script>
+
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/freeCellComponent.js"></script>
+    <script src="scripts/components/page.js"></script> 
+
+    
+    <script src="scripts/main.js"></script>
+    <!-- templates -->
+    <script type="text/template" id="card-template">
+		<li class="js-card <%- cardClass %>" draggable="true" data-selector="card" 
+		    data-position="<%- position %>"></li>
+    </script>
+</body>
+
+</html>
