@@ -1,0 +1,102 @@
+@import url(reset.css);
+
+
+
+#calculator-wrap{
+    width: 320px;
+    height: 550px;
+    position: relative;
+    margin: 0 auto;
+    background: #000000;
+    border-radius: 15px;
+}
+
+/* ---------------NUMBERS OUTPUT FIELD--------------- */
+
+#wide-wrap{
+    width: 284px;
+    margin: 0 auto;
+    padding: 23px 18px 46px 18px;
+}
+
+#edit-wide{
+    width: 100%;
+    background: #000000;
+    color: #f9f9f9;
+    border: none;
+    font-size: 40px;
+    text-align: right;
+}
+
+#edit-wide.smallDigits{
+    font-size: 22px;
+    padding-top: 22px;
+}
+
+/* ---------------KEYBOARD--------------- */
+
+/* global */
+
+#buttons{
+    width: 300px;
+    padding: 0 10px 0 10px;
+}
+
+#buttons input{
+    font-size: 28px;
+    font-family: Arial;
+    color: #f9f9f9;
+    float: left;
+    width: 65px;
+    height: 67px;
+    background: #505050;
+    border: none;
+    border-radius:8px;
+    text-shadow: 0 2px 2px rgba(0, 0, 30, 0.6);
+    margin: 5px;
+}
+
+#buttons input:hover{
+    box-shadow: 0px 0px 10px 5px rgba(255, 255, 190, 0.6);
+}
+
+#buttons input:active{
+    box-shadow: inset 0px 0px 10px 5px rgba(255, 255, 190, 0.6);
+}
+
+/* for 1 to 9 numbers*/
+
+#number-1to9{
+    width: 225px; 
+    height: 231px;
+    float: left;  
+}
+
+/* other buttons' styles */
+
+#topbutt input{
+    width: 68px;
+    background: #353535;
+}
+
+
+#plus-minus input{
+    background: #353535;
+}
+
+#botbutt input{
+    width: 68px;
+}
+
+#buttons .plusbutt{
+    height: 144px;
+}
+
+#buttons .longbutt{
+    width: 134px;
+    background: #ef5c4f;
+}
+
+#botbutt .longbutt{
+    background: #fe8f59;
+}
