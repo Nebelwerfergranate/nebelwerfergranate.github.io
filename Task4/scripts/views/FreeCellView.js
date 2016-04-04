@@ -66,7 +66,8 @@ class FreeCellView {
             var cardItem = this._createCardItem(foundations[i]);
             
             if(cardItem == null){
-                return;
+                foundation.innerHTML = "";
+                continue;
             }
 
             foundation.innerHTML = cardItem;
