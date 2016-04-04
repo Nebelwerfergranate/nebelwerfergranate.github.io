@@ -1,7 +1,10 @@
 @import url(reset.css);
 
-html,
-body{
+.clear{
+    clear: both;
+}
+
+html,body{
 height: 100%;
 }
 
@@ -9,23 +12,21 @@ height: 100%;
 html>body #wrapper {height: auto; min-height: 100%; }
 
 #wrapper{
-    height: 100%
-    -webkit-background-size: auto 100%;
-    -moz-background-size: auto 100%;
-    -o-background-size: auto 100%;
-    background-size: auto 100%;
+    width: 100%;
     
     background: #10923a; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover, #10923a 0%, #075322 100%); /* FF3.6-15 */
     background: -webkit-radial-gradient(center, ellipse cover, #10923a 0%,#075322 100%); /* Chrome10-25,Safari5.1-6 */
     background: radial-gradient(ellipse at center, #10923a 0%,#075322 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#10923a', endColorstr='#075322',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+    overflow: auto;
+    
 }
 
 #wrappTop{
     width: 1148px;
     height: 100%;
-    position: relative;
     margin: auto;
 }
 
@@ -39,8 +40,7 @@ html>body #wrapper {height: auto; min-height: 100%; }
 
 #basicCell{
     width: 1088px;
-    height: 100%;
-    position: relative;
+    height: auto; min-height: 100%;
     margin: auto;
 }
 
@@ -68,8 +68,42 @@ li {
     margin-bottom: -110px;
 }
 
-#finalCell li {
-    margin-bottom: -153px;
+/* Messanger */
+
+#messager{
+    width: 500px;
+    height: 260px;
+    background: #f6f6f6;
+    border-radius: 4px;
+    border: 2px solid #d6d6d6;
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    margin-left: -252px;
+    margin-top: -125px;
+    text-align: center;
+    font: bold 50px Myriad Pro,sans-serif;
+    font-variant: small-caps;
+    color: #231F20;
+    padding-top: 40px;
+}
+
+#messager input{
+    background: #231F20;
+    font: inherit;
+    color: #f6f6f6;
+    border: none;
+    border-radius:8px;
+    padding: 4px 10px 0 10px;
+    margin-top: 20px;
+}
+
+#messager input:hover{
+    background: #454243;
+}
+
+#messager input:active{
+    box-shadow: inset 0px 0px 10px 5px rgba(255, 255, 190, 0.6);
 }
 
 /*---------- Пики ----------*/
@@ -136,3 +170,7 @@ li {
 .diamonds2{background-position: -225px -618px;}
 .diamondsAce{background-position: -336px -618px;}
 
+/*---------- Разное ----------*/
+.js-hidden{
+    display: none;
+}
